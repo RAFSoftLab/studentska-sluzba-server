@@ -1,4 +1,4 @@
-package studsluzba.model;
+package org.raflab.studsluzba.model;
 
 import lombok.Getter;
 import lombok.Setter;
