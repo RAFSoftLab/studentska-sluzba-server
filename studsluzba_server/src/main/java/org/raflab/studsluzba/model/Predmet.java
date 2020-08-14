@@ -1,17 +1,31 @@
 package org.raflab.studsluzba.model;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class Predmet {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	
 	private String sifra;
 	private String naziv;
 	private String opis;
 	private int ESPB;
 	private int semestar;
 	private int godinaStudija; // izracunava se na osnovu semestra
+	@ManyToOne(fetch = FetchType.EAGER)
 	private StudijskiProgram naProgramu;
 	private int fondPredavanja;
 	private int fondVezbe;

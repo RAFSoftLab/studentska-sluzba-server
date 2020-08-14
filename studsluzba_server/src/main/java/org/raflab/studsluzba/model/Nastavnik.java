@@ -24,9 +24,11 @@ public class Nastavnik {
 	 private String srednjeIme;   // not null 
 	 private String email;   // not null
 	 private String brojTelefona;
-	 private String adresa;
+	 private String adresa;	 
 	 @OneToMany(mappedBy = "nastavnik")
 	 private Set<NastavnikZvanje> zvanja;
+	 
+	 
 	
 
 }

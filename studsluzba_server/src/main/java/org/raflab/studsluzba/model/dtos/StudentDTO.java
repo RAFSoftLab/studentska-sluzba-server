@@ -21,7 +21,8 @@ import lombok.Setter;
 
 public class StudentDTO {
 	
-	// osnovni podaci, mozda dodati jos nesto?
+	private Long id;
+	// dodati jos nesto?
 	private String ime;
 	private String prezime; 
 	// indeks

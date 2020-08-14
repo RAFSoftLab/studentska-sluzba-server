@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +34,7 @@ public class StudentIndeks {
 	//private SimpleCodeValue nacinFinansiranja;
 	private boolean aktivan; // aktivan
 	private LocalDate vaziOd;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)	
 	private StudentPodaci student;
 	//private List<PolozenPredmet> polozeniPredmeti;
 	

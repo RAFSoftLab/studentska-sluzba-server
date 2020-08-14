@@ -8,6 +8,7 @@ public class EntityMappers {
 	
 	public static StudentDTO fromStudentPodaciToDTO(StudentPodaci sp) {
 		StudentDTO s = new StudentDTO();
+		s.setId(sp.getId());
 		s.setIme(sp.getIme());
 		s.setPrezime(sp.getPrezime());
 		return s;
@@ -15,7 +16,7 @@ public class EntityMappers {
 	}
 	
 	public static StudentDTO fromStudentIndeksToDTO(StudentIndeks si) {
-		StudentDTO s = fromStudentPodaciToDTO(si.getStudent());
+		StudentDTO s = fromStudentPodaciToDTO(si.getStudent());	
 		s.setGodinaUpisa(si.getGodina());
 		s.setBroj(si.getBroj());
 		s.setStudProgram(si.getStudProgram());
