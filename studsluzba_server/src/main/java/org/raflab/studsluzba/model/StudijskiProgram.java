@@ -1,6 +1,6 @@
 package org.raflab.studsluzba.model;
 
-import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +26,4 @@ public class StudijskiProgram {
 	private int trajanjeSemestara;
 	private String vrstaStudija; // OAS - osnovne akademske studje, OSS - osnovne strukovne, 	MAS - master akademske studije,
 	
-	
-	
-
 }
