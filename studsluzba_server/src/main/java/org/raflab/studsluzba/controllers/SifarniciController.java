@@ -24,9 +24,9 @@ public class SifarniciController {
       return zvanjaRepository.findAll();
     }
 	
-	@GetMapping(path="/studprogram/all")
-    public Iterable<StudijskiProgram> getAllStudProgrami() {      
-      return studProgramRepository.findAll();
+	@GetMapping(path="/studprogram/oznaka/all")
+    public Iterable<String> getAllStudProgramOznaka() {      
+      return studProgramRepository.findAllOznaka();
     }
 
 }
