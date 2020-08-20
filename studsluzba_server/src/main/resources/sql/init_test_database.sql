@@ -21,3 +21,6 @@ INSERT INTO `nastavna_naucna_zvanja` (`id`,`vrsta`,`zvanje`) VALUES (9,'saradnic
 
 INSERT INTO `studijski_program` (`id`,`godina_akreditacije`,`naziv`,`oznaka`,`trajanje_godina`,`trajanje_semestara`,`vrsta_studija`,`zvanje`) VALUES (1,2020,'Računarske nauke','RN',4,8,'OAS','diplomirani informatičar');
 INSERT INTO `studijski_program` (`id`,`godina_akreditacije`,`naziv`,`oznaka`,`trajanje_godina`,`trajanje_semestara`,`vrsta_studija`,`zvanje`) VALUES (2,2020,'Računarsko inšenjerstvo','RI',4,8,'OAS',NULL);
+
+INSERT INTO `srednja_skola` (`id`,`mesto`,`naziv`,`vrsta`) VALUES (1,'Beograd','9. Beogradska','gimnazija');
+INSERT INTO `srednja_skola` (`id`,`mesto`,`naziv`,`vrsta`) VALUES (2,'Beograd','Računarska gimnazija','gimnazija');

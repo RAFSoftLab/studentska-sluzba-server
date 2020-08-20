@@ -5,9 +5,11 @@ package org.raflab.studsluzba.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +42,12 @@ public class StudentPodaci{
 	 private String licnuKartuIzdao;
 	 private String mestoStanovanjaCode;
 	 private String adresaStanovanja;   // u toku studija
+	 @OneToOne(fetch = FetchType.EAGER)
+	 private PrviUpis prviUpis;
+	 
+//	 opstina stanovanja i prebivalista
+	 
+	 
 	 /*
 	 @OneToMany(mappedBy = "student")
 	 @JsonBackReference
