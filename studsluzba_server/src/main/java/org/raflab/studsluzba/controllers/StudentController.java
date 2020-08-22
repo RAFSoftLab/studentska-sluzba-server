@@ -32,7 +32,7 @@ public class StudentController {
 	
 	
 	@Autowired
-	StudentPodaciRepository studentPodaciRepository;
+	StudentPodaciRepository studentPodaciRepository;	//	Autowired - Dependancy injection, Spring vraca singleton objekat iz svoje memorije
 	
 	@Autowired
 	StudentIndeksRepository studentIndeksRepository;
@@ -79,15 +79,15 @@ public class StudentController {
     										  @RequestParam (required = false) String studProgram,
     										  @RequestParam (required = false) Integer godina,
     										  @RequestParam (required = false) Integer broj) {
-    List<StudentDTO> retVal = new ArrayList<StudentDTO>();	
-    if(studProgram==null && godina == null && broj==null) { // pretrazivanje studenata bez indeksa
-    	List<StudentPodaci> spList = studentPodaciRepository.findStudent(ime, prezime);
-    	retVal = spList.stream().map(EntityMappers::fromStudentPodaciToDTO).collect(Collectors.toList());
-    }
-    List<StudentIndeks> siList = studentIndeksRepository.findStudentIndeks(ime, prezime, studProgram, godina, broj);
-    List<StudentDTO> addedElem = siList.stream().map(EntityMappers::fromStudentIndeksToDTO).collect(Collectors.toList());
-    retVal.addAll(addedElem);
-    return retVal;
+    	List<StudentDTO> retVal = new ArrayList<StudentDTO>();	
+    	if(studProgram==null && godina == null && broj==null) { // pretrazivanje studenata bez indeksa
+    		List<StudentPodaci> spList = studentPodaciRepository.findStudent(ime, prezime);
+    		retVal = spList.stream().map(EntityMappers::fromStudentPodaciToDTO).collect(Collectors.toList());
+    	}
+    	List<StudentIndeks> siList = studentIndeksRepository.findStudentIndeks(ime, prezime, studProgram, godina, broj);
+    	List<StudentDTO> addedElem = siList.stream().map(EntityMappers::fromStudentIndeksToDTO).collect(Collectors.toList());
+    	retVal.addAll(addedElem);
+    	return retVal;
     }
    
 
