@@ -25,8 +25,8 @@ public class Nastavnik {
 	 private String email;   // not null
 	 private String brojTelefona;
 	 private String adresa;	 
-	 @OneToMany(mappedBy = "nastavnik")
-	 private Set<NastavnikZvanje> zvanja;
+	 //@OneToMany(mappedBy = "nastavnik")
+	 //private Set<NastavnikZvanje> zvanja;
 	 
 	 
 	
