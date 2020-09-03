@@ -22,10 +22,10 @@ public class NastavnikController {
 	NastavnikRepository nastavnikRepository;
 	
 	@PostMapping(path = "/add")
-	public String addNewNastavnik(@RequestBody Nastavnik nastavnik) {
+	public Long addNewNastavnik(@RequestBody Nastavnik nastavnik) {
 		System.out.println("Nastavnik " + nastavnik.getPrezime() + " je uspešno sačuvan");
 		nastavnikRepository.save(nastavnik);
-		return "Nastavnik sačuvan";
+		return nastavnik.getId();
 	}
 	
 	@GetMapping(path = "/all")
