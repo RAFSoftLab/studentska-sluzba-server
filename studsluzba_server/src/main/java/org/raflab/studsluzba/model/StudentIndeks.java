@@ -1,6 +1,8 @@
 package org.raflab.studsluzba.model;
 
 import java.io.Serializable;
+
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -11,16 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.Setter;
 
-
-@Getter
-@Setter
 @Entity
 public class StudentIndeks {	
 	
@@ -31,12 +29,77 @@ public class StudentIndeks {
 	private int broj;
 	private int godina;
 	private String studProgram;
-	//private SimpleCodeValue nacinFinansiranja;
+	private String nacinFinansiranja;
 	private boolean aktivan; // aktivan
 	private LocalDate vaziOd;
 	@ManyToOne(fetch = FetchType.EAGER)	
 	private StudentPodaci student;
-	//private List<PolozenPredmet> polozeniPredmeti;
+	@OneToMany(mappedBy = "studentIndeks")
+	private List<PolozenPredmet> polozeniPredmeti;
+	@OneToMany(mappedBy = "studentIndeks")
+	private List<UpisGodine> upisiGodine;
+	@OneToMany(mappedBy = "studentIndeks")
+	private List<ObnovaGodine> obnoveGodine;
+	@OneToMany(mappedBy = "studentIndeks")
+	private List<Uplata> uplate;
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public int getBroj() {
+		return broj;
+	}
+	public void setBroj(int broj) {
+		this.broj = broj;
+	}
+	public int getGodina() {
+		return godina;
+	}
+	public void setGodina(int godina) {
+		this.godina = godina;
+	}
+	public String getStudProgram() {
+		return studProgram;
+	}
+	public void setStudProgram(String studProgram) {
+		this.studProgram = studProgram;
+	}
+	public boolean isAktivan() {
+		return aktivan;
+	}
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
+	public LocalDate getVaziOd() {
+		return vaziOd;
+	}
+	public void setVaziOd(LocalDate vaziOd) {
+		this.vaziOd = vaziOd;
+	}
+	public StudentPodaci getStudent() {
+		return student;
+	}
+	public void setStudent(StudentPodaci student) {
+		this.student = student;
+	}
+	public String getNacinFinansiranja() {
+		return nacinFinansiranja;
+	}
+	public void setNacinFinansiranja(String nacinFinansiranja) {
+		this.nacinFinansiranja = nacinFinansiranja;
+	}
+	public List<PolozenPredmet> getPolozeniPredmeti() {
+		return polozeniPredmeti;
+	}
+	public void setPolozeniPredmeti(List<PolozenPredmet> polozeniPredmeti) {
+		this.polozeniPredmeti = polozeniPredmeti;
+	}
+	
+	
 	
 	
 

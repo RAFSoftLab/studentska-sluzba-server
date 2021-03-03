@@ -1,12 +1,21 @@
 package org.raflab.studsluzba.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Getter
-@Setter
 
-public class Uplata extends AktivnostStudenta {
+@Entity
+public class Uplata {
+	
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		private Long id;
+		
+		@ManyToOne
+		private StudentIndeks studentIndeks;
 	
 		private String nacinUplate;
 		private float iznos;

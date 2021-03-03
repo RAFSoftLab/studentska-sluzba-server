@@ -1,8 +1,8 @@
 package org.raflab.studsluzba.model;
 
 
-
 import java.time.LocalDate;
+
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,12 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import lombok.Getter;
-import lombok.Setter;
 
 
-@Getter
-@Setter
 @Entity
 public class StudentPodaci{ 
 	
@@ -42,18 +38,139 @@ public class StudentPodaci{
 	 private String licnuKartuIzdao;
 	 private String mestoStanovanjaCode;
 	 private String adresaStanovanja;   // u toku studija
-	 @OneToOne(fetch = FetchType.EAGER)
+	 @OneToOne
 	 private PrviUpis prviUpis;
 	 
-//	 opstina stanovanja i prebivalista
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getIme() {
+		return ime;
+	}
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+	public String getPrezime() {
+		return prezime;
+	}
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+	public String getSrednjeIme() {
+		return srednjeIme;
+	}
+	public void setSrednjeIme(String srednjeIme) {
+		this.srednjeIme = srednjeIme;
+	}
+	public String getJmbg() {
+		return jmbg;
+	}
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
+	}
+	public LocalDate getDatumRodjenja() {
+		return datumRodjenja;
+	}
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
+		this.datumRodjenja = datumRodjenja;
+	}
+	public String getMestoRodjenjaCode() {
+		return mestoRodjenjaCode;
+	}
+	public void setMestoRodjenjaCode(String mestoRodjenjaCode) {
+		this.mestoRodjenjaCode = mestoRodjenjaCode;
+	}
+	public String getMestoPrebivalistaCode() {
+		return mestoPrebivalistaCode;
+	}
+	public void setMestoPrebivalistaCode(String mestoPrebivalistaCode) {
+		this.mestoPrebivalistaCode = mestoPrebivalistaCode;
+	}
+	public String getDrzavaRodjenjaCode() {
+		return drzavaRodjenjaCode;
+	}
+	public void setDrzavaRodjenjaCode(String drzavaRodjenjaCode) {
+		this.drzavaRodjenjaCode = drzavaRodjenjaCode;
+	}
+	public String getDrzavljanstvoCode() {
+		return drzavljanstvoCode;
+	}
+	public void setDrzavljanstvoCode(String drzavljanstvoCode) {
+		this.drzavljanstvoCode = drzavljanstvoCode;
+	}
+	public String getNacionalnost() {
+		return nacionalnost;
+	}
+	public void setNacionalnost(String nacionalnost) {
+		this.nacionalnost = nacionalnost;
+	}
+	public char getPol() {
+		return pol;
+	}
+	public void setPol(char pol) {
+		this.pol = pol;
+	}
+	public String getAdresa() {
+		return adresa;
+	}
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	public String getBrojTelefona() {
+		return brojTelefona;
+	}
+	public void setBrojTelefona(String brojTelefona) {
+		this.brojTelefona = brojTelefona;
+	}
+	public String getSlika() {
+		return slika;
+	}
+	public void setSlika(String slika) {
+		this.slika = slika;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getBrojLicneKarte() {
+		return brojLicneKarte;
+	}
+	public void setBrojLicneKarte(String brojLicneKarte) {
+		this.brojLicneKarte = brojLicneKarte;
+	}
+	public String getLicnuKartuIzdao() {
+		return licnuKartuIzdao;
+	}
+	public void setLicnuKartuIzdao(String licnuKartuIzdao) {
+		this.licnuKartuIzdao = licnuKartuIzdao;
+	}
+	public String getMestoStanovanjaCode() {
+		return mestoStanovanjaCode;
+	}
+	public void setMestoStanovanjaCode(String mestoStanovanjaCode) {
+		this.mestoStanovanjaCode = mestoStanovanjaCode;
+	}
+	public String getAdresaStanovanja() {
+		return adresaStanovanja;
+	}
+	public void setAdresaStanovanja(String adresaStanovanja) {
+		this.adresaStanovanja = adresaStanovanja;
+	}
+	public PrviUpis getPrviUpis() {
+		return prviUpis;
+	}
+	public void setPrviUpis(PrviUpis prviUpis) {
+		this.prviUpis = prviUpis;
+	}
+	 
+
 	 
 	 
-	 /*
-	 @OneToMany(mappedBy = "student")
-	 @JsonBackReference
-	 private List<StudentIndeks> indeksi;
-	 */
-		 	 
 	
 	
 	

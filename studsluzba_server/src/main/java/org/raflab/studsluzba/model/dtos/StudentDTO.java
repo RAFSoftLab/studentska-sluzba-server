@@ -16,8 +16,7 @@ import lombok.Setter;
  *
  */
 
-@Getter
-@Setter
+
 
 public class StudentDTO {
 	
@@ -29,6 +28,44 @@ public class StudentDTO {
 	private int godinaUpisa;
 	private String studProgram;
 	private int broj;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getIme() {
+		return ime;
+	}
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+	public String getPrezime() {
+		return prezime;
+	}
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+	public int getGodinaUpisa() {
+		return godinaUpisa;
+	}
+	public void setGodinaUpisa(int godinaUpisa) {
+		this.godinaUpisa = godinaUpisa;
+	}
+	public String getStudProgram() {
+		return studProgram;
+	}
+	public void setStudProgram(String studProgram) {
+		this.studProgram = studProgram;
+	}
+	public int getBroj() {
+		return broj;
+	}
+	public void setBroj(int broj) {
+		this.broj = broj;
+	}
+	
+	
 	
 
 }

@@ -1,12 +1,21 @@
 package org.raflab.studsluzba.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Getter
-@Setter
+
+@Entity
 public class OsvojeniPoeniPredispitne {
-	private StudentIndeks student;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@ManyToOne
+	private StudentIndeks studentIndeks;
 	private float poeni;
 	private PredispitnaObaveza predispitnaObaveza;
 	
