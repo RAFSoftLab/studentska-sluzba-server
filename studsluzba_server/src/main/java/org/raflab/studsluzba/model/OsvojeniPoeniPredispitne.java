@@ -17,6 +17,7 @@ public class OsvojeniPoeniPredispitne {
 	@ManyToOne
 	private StudentIndeks studentIndeks;
 	private float poeni;
+	@ManyToOne
 	private PredispitnaObaveza predispitnaObaveza;
 	
 }
