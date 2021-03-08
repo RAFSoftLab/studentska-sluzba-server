@@ -19,6 +19,7 @@ public class SkolskaGodina {
 	private int pocetna;
 	private int krajnja;
 	private boolean aktivna;
+	
 	public int getPocetna() {
 		return pocetna;
 	}

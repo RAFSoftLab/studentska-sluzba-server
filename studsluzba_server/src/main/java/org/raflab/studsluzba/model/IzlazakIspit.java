@@ -14,9 +14,9 @@ public class IzlazakIspit {
 	private Long id;
 	@OneToOne
 	private PrijavaIspita prijava;
-	private float brojPoenaIspit;
-	private float brojPoenaPredispitne;  // automatski se sabira, ne unosi se
-	private boolean ponisten;
+	private Float brojPoenaIspit;
+	private Float brojPoenaPredispitne;  // automatski se sabira, ne unosi se
+	private boolean ponisten = false;
 	private String napomena;
 	
 	public PrijavaIspita getPrijava() {

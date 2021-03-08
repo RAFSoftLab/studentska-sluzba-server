@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class PrijavaIspita {
@@ -18,6 +20,7 @@ public class PrijavaIspita {
 	private Long id;
 	private LocalDate datumPrijave;
 	@ManyToOne
+	@JsonIgnore
 	private StudentIndeks studentIndeks;
 	@ManyToOne
 	private Ispit ispit;

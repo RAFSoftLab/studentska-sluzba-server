@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 public class Nastavnik {
 	 
 	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 private Long id;
 	 private String ime;	  // not null
 	 private String prezime;  // not null

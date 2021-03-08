@@ -16,6 +16,7 @@ public interface StudentIndeksRepository extends CrudRepository<StudentIndeks, L
     StudentIndeks findStudentIndeks(String studProgram, int godina, int broj);
 	
 	
+	//TODO dodati da se gledaju samo aktivni indeksi
 	@Query("select indeks from StudentIndeks indeks where "
 			+ "(:ime is null or lower(indeks.student.ime) like :ime) and "
 			+ "(:prezime is null or lower(indeks.student.prezime) like :prezime) and "
@@ -23,5 +24,8 @@ public interface StudentIndeksRepository extends CrudRepository<StudentIndeks, L
 			+ "(:godina is null or indeks.godina = :godina) and "
 			+ "(:broj is null or indeks.broj = :broj)")
 	List<StudentIndeks> findStudentIndeks(String ime, String prezime, String studProgram, Integer godina, Integer broj);
-
-}
+	
+	
+	
+	
+	}

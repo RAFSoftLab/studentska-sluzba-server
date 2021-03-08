@@ -4,10 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class PolozenPredmet {
@@ -16,15 +17,19 @@ public class PolozenPredmet {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private int ocena;
+	private Integer ocena;
 	@ManyToOne
+	@JoinColumn(nullable = true)	
 	private IzlazakIspit ispit;  // 0..1, ako je priznat vrednost polja je null
-	@ManyToOne
+	@ManyToOne	
 	private Nastavnik nastavnik;
-	@ManyToOne
+	@ManyToOne	
+	@JoinColumn(name = "predmet_id")	
 	private Predmet predmet;
 	
-	@ManyToOne
+	@ManyToOne	
+	@JoinColumn(name = "student_indeks_id")	
+	@JsonIgnore
 	private StudentIndeks studentIndeks;
 	
 	
@@ -35,10 +40,10 @@ public class PolozenPredmet {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getOcena() {
+	public Integer getOcena() {
 		return ocena;
 	}
-	public void setOcena(int ocena) {
+	public void setOcena(Integer ocena) {
 		this.ocena = ocena;
 	}
 	public IzlazakIspit getIspit() {

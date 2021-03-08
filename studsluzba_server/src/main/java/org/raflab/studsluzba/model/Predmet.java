@@ -8,27 +8,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Predmet {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	private String sifra;
 	private String naziv;
 	private String opis;
-	private int ESPB;
-	private int semestar;
-	private int godinaStudija; // izracunava se na osnovu semestra
-	@ManyToOne
+	private Integer ESPB;
+	private Integer semestar;
+	private Integer godinaStudija; // izracunava se na osnovu semestra
+	@ManyToOne	
+	@JsonIgnore
 	private StudijskiProgram studProgram;
-	private int fondPredavanja;
-	private int fondVezbe;
+	private Integer fondPredavanja;
+	private Integer fondVezbe;
 	
 	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -53,38 +56,42 @@ public class Predmet {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public int getESPB() {
+	public Integer getESPB() {
 		return ESPB;
 	}
-	public void setESPB(int eSPB) {
+	public void setESPB(Integer eSPB) {
 		ESPB = eSPB;
 	}
-	public int getSemestar() {
+	public Integer getSemestar() {
 		return semestar;
 	}
-	public void setSemestar(int semestar) {
+	public void setSemestar(Integer semestar) {
 		this.semestar = semestar;
 	}
-	public int getGodinaStudija() {
+	public Integer getGodinaStudija() {
 		return godinaStudija;
 	}
-	public void setGodinaStudija(int godinaStudija) {
+	public void setGodinaStudija(Integer godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
-	
-	public int getFondPredavanja() {
+	public StudijskiProgram getStudProgram() {
+		return studProgram;
+	}
+	public void setStudProgram(StudijskiProgram studProgram) {
+		this.studProgram = studProgram;
+	}
+	public Integer getFondPredavanja() {
 		return fondPredavanja;
 	}
-	public void setFondPredavanja(int fondPredavanja) {
+	public void setFondPredavanja(Integer fondPredavanja) {
 		this.fondPredavanja = fondPredavanja;
 	}
-	public int getFondVezbe() {
+	public Integer getFondVezbe() {
 		return fondVezbe;
 	}
-	public void setFondVezbe(int fondVezbe) {
+	public void setFondVezbe(Integer fondVezbe) {
 		this.fondVezbe = fondVezbe;
 	}
-	// svaki predmet ima jedinstvenu sifru
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,19 +114,7 @@ public class Predmet {
 		} else if (!sifra.equals(other.sifra))
 			return false;
 		return true;
-	}
-	public StudijskiProgram getStudProgram() {
-		return studProgram;
-	}
-	public void setStudProgram(StudijskiProgram studProgram) {
-		this.studProgram = studProgram;
-	}
-	
-	
-	
-	
-	
-	
+	}		
 	
 	
 	

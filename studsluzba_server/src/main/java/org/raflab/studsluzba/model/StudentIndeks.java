@@ -30,20 +30,12 @@ public class StudentIndeks {
 	private int godina;
 	private String studProgram;
 	private String nacinFinansiranja;
-	private boolean aktivan; // aktivan
+	private boolean aktivan; 
 	private LocalDate vaziOd;
-	@ManyToOne(fetch = FetchType.EAGER)	
+	@ManyToOne
 	private StudentPodaci student;
-	@OneToMany(mappedBy = "studentIndeks")
-	private List<PolozenPredmet> polozeniPredmeti;
-	@OneToMany(mappedBy = "studentIndeks")
-	private List<UpisGodine> upisiGodine;
-	@OneToMany(mappedBy = "studentIndeks")
-	private List<ObnovaGodine> obnoveGodine;
-	@OneToMany(mappedBy = "studentIndeks")
-	private List<Uplata> uplate;
 	
-	
+		
 	public Long getId() {
 		return id;
 	}
@@ -92,12 +84,7 @@ public class StudentIndeks {
 	public void setNacinFinansiranja(String nacinFinansiranja) {
 		this.nacinFinansiranja = nacinFinansiranja;
 	}
-	public List<PolozenPredmet> getPolozeniPredmeti() {
-		return polozeniPredmeti;
-	}
-	public void setPolozeniPredmeti(List<PolozenPredmet> polozeniPredmeti) {
-		this.polozeniPredmeti = polozeniPredmeti;
-	}
+	
 	
 	
 	

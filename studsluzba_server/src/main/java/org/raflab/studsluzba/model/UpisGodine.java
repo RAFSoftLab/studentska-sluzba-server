@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UpisGodine {
 	
@@ -18,12 +20,15 @@ public class UpisGodine {
 	private Long id;
 	
 	@ManyToOne
+	@JsonIgnore
 	private StudentIndeks studentIndeks;
 	private LocalDate datumUpisa;
 	private int prenosEspb; // podrazumevano 0
 	private int godinaKojaSeUpisuje;
 	@ManyToMany
 	private Set<Predmet> predmeti;
+	
+	private String napomena;
 	
 	public StudentIndeks getStudentIndeks() {
 		return studentIndeks;
@@ -54,6 +59,18 @@ public class UpisGodine {
 	}
 	public void setPredmeti(Set<Predmet> predmeti) {
 		this.predmeti = predmeti;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNapomena() {
+		return napomena;
+	}
+	public void setNapomena(String napomena) {
+		this.napomena = napomena;
 	}
 	
 	

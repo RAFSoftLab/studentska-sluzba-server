@@ -20,35 +20,35 @@ public class PrviUpis{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;	
-	private float uspehSrednjaSkola;
-	private float uspehPrijemni;
+	private Float uspehSrednjaSkola;
+	private Float uspehPrijemni;
 	@ManyToOne
 	private SrednjaSkola zavrsenaSrednjaSkola;
 	private String strucnaSprema;
-	private int godinaZavrsetkaSrednjeSkole;
+	private Integer godinaZavrsetkaSrednjeSkole;
 	private String prelazSaViskoskolskeUstanove;
 	private LocalDate datumUpisa;
 	private String napomena;
 	private String prethodnoZavrseneStudije;
 	private String visokoskolsaUstanovaZavrsenihStudija;
 	private String stecenoZvanje;
-	private float prosecnaOcenaNaPrethodnimStudijama;
+	private Float prosecnaOcenaNaPrethodnimStudijama;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public float getUspehSrednjaSkola() {
+	public Float getUspehSrednjaSkola() {
 		return uspehSrednjaSkola;
 	}
-	public void setUspehSrednjaSkola(float uspehSrednjaSkola) {
+	public void setUspehSrednjaSkola(Float uspehSrednjaSkola) {
 		this.uspehSrednjaSkola = uspehSrednjaSkola;
 	}
-	public float getUspehPrijemni() {
+	public Float getUspehPrijemni() {
 		return uspehPrijemni;
 	}
-	public void setUspehPrijemni(float uspehPrijemni) {
+	public void setUspehPrijemni(Float uspehPrijemni) {
 		this.uspehPrijemni = uspehPrijemni;
 	}
 	public SrednjaSkola getZavrsenaSrednjaSkola() {
@@ -63,10 +63,10 @@ public class PrviUpis{
 	public void setStrucnaSprema(String strucnaSprema) {
 		this.strucnaSprema = strucnaSprema;
 	}
-	public int getGodinaZavrsetkaSrednjeSkole() {
+	public Integer getGodinaZavrsetkaSrednjeSkole() {
 		return godinaZavrsetkaSrednjeSkole;
 	}
-	public void setGodinaZavrsetkaSrednjeSkole(int godinaZavrsetkaSrednjeSkole) {
+	public void setGodinaZavrsetkaSrednjeSkole(Integer godinaZavrsetkaSrednjeSkole) {
 		this.godinaZavrsetkaSrednjeSkole = godinaZavrsetkaSrednjeSkole;
 	}
 	public String getPrelazSaViskoskolskeUstanove() {
@@ -105,12 +105,13 @@ public class PrviUpis{
 	public void setStecenoZvanje(String stecenoZvanje) {
 		this.stecenoZvanje = stecenoZvanje;
 	}
-	public float getProsecnaOcenaNaPrethodnimStudijama() {
+	public Float getProsecnaOcenaNaPrethodnimStudijama() {
 		return prosecnaOcenaNaPrethodnimStudijama;
 	}
-	public void setProsecnaOcenaNaPrethodnimStudijama(float prosecnaOcenaNaPrethodnimStudijama) {
+	public void setProsecnaOcenaNaPrethodnimStudijama(Float prosecnaOcenaNaPrethodnimStudijama) {
 		this.prosecnaOcenaNaPrethodnimStudijama = prosecnaOcenaNaPrethodnimStudijama;
 	}
+	
 	
 	
 	

@@ -1,12 +1,10 @@
 package org.raflab.studsluzba.model.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 
- * Entitet koji se koristi za prenos podataka o studentu, 
- * mogu da budu samo osnovni podaci, bez indeksa, u slučaju
+ * Entitet koji se koristi za prenos osnovnih podataka o studentu, 
+ * mogu da budu samo licni podaci, bez indeksa, u slučaju
  * da je student unet u sistem ali mu još nije dodeljen indeks
  * ili podaci sa aktivnim indeksom. 
  * 
@@ -20,7 +18,8 @@ import lombok.Setter;
 
 public class StudentDTO {
 	
-	private Long id;
+	private Long idIndeks;
+	private Long idStudentPodaci;
 	// dodati jos nesto?
 	private String ime;
 	private String prezime; 
@@ -28,11 +27,21 @@ public class StudentDTO {
 	private int godinaUpisa;
 	private String studProgram;
 	private int broj;
-	public Long getId() {
-		return id;
+	
+	
+	
+	
+	public Long getIdIndeks() {
+		return idIndeks;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdIndeks(Long idIndeks) {
+		this.idIndeks = idIndeks;
+	}
+	public Long getIdStudentPodaci() {
+		return idStudentPodaci;
+	}
+	public void setIdStudentPodaci(Long idStudentPodaci) {
+		this.idStudentPodaci = idStudentPodaci;
 	}
 	public String getIme() {
 		return ime;

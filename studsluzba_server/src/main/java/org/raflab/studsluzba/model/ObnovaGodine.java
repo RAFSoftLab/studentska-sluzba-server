@@ -1,5 +1,6 @@
 package org.raflab.studsluzba.model;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ObnovaGodine {
 	
@@ -18,12 +21,18 @@ public class ObnovaGodine {
 	private Long id;
 	
 	@ManyToOne
+	@JsonIgnore
 	private StudentIndeks studentIndeks;
 	
 	private int godinaKojuObnavlja;	
 	
 	@ManyToMany
 	private Set<Predmet> upisujePredmete;
+	
+	private LocalDate datumObnove;	
+	
+	private String napomena;
+	
 	
 	public Long getId() {
 		return id;
@@ -42,7 +51,28 @@ public class ObnovaGodine {
 	}
 	public void setUpisujePredmete(Set<Predmet> upisujePredmete) {
 		this.upisujePredmete = upisujePredmete;
+	}
+	public StudentIndeks getStudentIndeks() {
+		return studentIndeks;
+	}
+	public void setStudentIndeks(StudentIndeks studentIndeks) {
+		this.studentIndeks = studentIndeks;
+	}
+	public LocalDate getDatumObnove() {
+		return datumObnove;
+	}
+	public void setDatumObnove(LocalDate datumObnove) {
+		this.datumObnove = datumObnove;
+	}
+	public String getNapomena() {
+		return napomena;
+	}
+	public void setNapomena(String napomena) {
+		this.napomena = napomena;
 	}	
+	
+	
+	
 	
 	
 }

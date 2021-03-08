@@ -6,8 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class SlusaPredmet {
@@ -16,13 +15,13 @@ public class SlusaPredmet {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@JsonIgnore
 	private StudentIndeks studentIndeks;
+	
 	@ManyToOne
-	private Predmet predmet;
-	@ManyToOne
-	private Nastavnik nastavnik;
-	@ManyToOne
-	private SkolskaGodina skolskaGodina;
+	private DrziPredmet drziPredmet;
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -35,24 +34,13 @@ public class SlusaPredmet {
 	public void setStudentIndeks(StudentIndeks studentIndeks) {
 		this.studentIndeks = studentIndeks;
 	}
-	public Predmet getPredmet() {
-		return predmet;
+	public DrziPredmet getDrziPredmet() {
+		return drziPredmet;
 	}
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
+	public void setDrziPredmet(DrziPredmet drziPredmet) {
+		this.drziPredmet = drziPredmet;
 	}
-	public Nastavnik getNastavnik() {
-		return nastavnik;
-	}
-	public void setNastavnik(Nastavnik nastavnik) {
-		this.nastavnik = nastavnik;
-	}
-	public SkolskaGodina getSkolskaGodina() {
-		return skolskaGodina;
-	}
-	public void setSkolskaGodina(SkolskaGodina skolskaGodina) {
-		this.skolskaGodina = skolskaGodina;
-	}
+	
 	
 	
 

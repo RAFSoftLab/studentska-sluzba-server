@@ -19,5 +19,31 @@ public class OsvojeniPoeniPredispitne {
 	private float poeni;
 	@ManyToOne
 	private PredispitnaObaveza predispitnaObaveza;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public StudentIndeks getStudentIndeks() {
+		return studentIndeks;
+	}
+	public void setStudentIndeks(StudentIndeks studentIndeks) {
+		this.studentIndeks = studentIndeks;
+	}
+	public float getPoeni() {
+		return poeni;
+	}
+	public void setPoeni(float poeni) {
+		this.poeni = poeni;
+	}
+	public PredispitnaObaveza getPredispitnaObaveza() {
+		return predispitnaObaveza;
+	}
+	public void setPredispitnaObaveza(PredispitnaObaveza predispitnaObaveza) {
+		this.predispitnaObaveza = predispitnaObaveza;
+	}
+	
+	
 	
 }

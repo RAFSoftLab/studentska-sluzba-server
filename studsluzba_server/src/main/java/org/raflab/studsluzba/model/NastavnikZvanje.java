@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 public class NastavnikZvanje {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate datumIzbora;  // ili reizbora
 	private String naucnaOblast;  // sifarnik na klijentu - tabela u bazi bez veze

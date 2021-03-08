@@ -19,11 +19,11 @@ public class Ispit {
 	private Long id;
 	private LocalDate datumOdrzavanja;    // i vreme
 	private String mestoOdrzavanja;  // ne mora da se unosi
-	private boolean zakljucen;
+	
+	private boolean zakljucen = false;
 	@ManyToOne
-	private Predmet predmet;
-	@ManyToOne
-	private Nastavnik nastavnik;
+	private DrziPredmet drziPredmet;
+	
 	@ManyToOne
 	private IspitniRok ispitniRok;
 	@OneToMany
@@ -47,18 +47,7 @@ public class Ispit {
 	public void setZakljucen(boolean zakljucen) {
 		this.zakljucen = zakljucen;
 	}
-	public Predmet getPredmet() {
-		return predmet;
-	}
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
-	}
-	public Nastavnik getNastavnik() {
-		return nastavnik;
-	}
-	public void setNastavnik(Nastavnik nastavnik) {
-		this.nastavnik = nastavnik;
-	}
+		
 	public IspitniRok getIspitniRok() {
 		return ispitniRok;
 	}

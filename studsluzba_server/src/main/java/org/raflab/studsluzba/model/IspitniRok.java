@@ -17,7 +17,8 @@ import javax.persistence.ManyToOne;
 public class IspitniRok {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String naziv;  // januarski, februarski
 	private LocalDate datumPocetka;
 	private LocalDate datumZavrsetka;
@@ -61,6 +62,12 @@ public class IspitniRok {
 	}
 	public void setSkolskaGodina(SkolskaGodina skolskaGodina) {
 		this.skolskaGodina = skolskaGodina;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
  	
  	

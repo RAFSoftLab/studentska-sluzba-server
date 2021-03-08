@@ -3,7 +3,7 @@ package org.raflab.studsluzba.model;
 
 import java.time.LocalDate;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,22 +24,24 @@ public class StudentPodaci{
 	 private String srednjeIme;   // not null 
 	 private String jmbg;    
 	 private LocalDate datumRodjenja;  // not null
-	 private String mestoRodjenjaCode; 
-	 private String mestoPrebivalistaCode;  // not null
-	 private String drzavaRodjenjaCode;   
-	 private String drzavljanstvoCode;   // not null
+	 private String mestoRodjenja; 
+	 private String mestoPrebivalista;  // not null
+	 private String drzavaRodjenja;   
+	 private String drzavljanstvo;   // not null
 	 private String nacionalnost;   // samoizjasnjavanje, moze bilo sta  
-	 private char pol;    // not null
+	 private Character pol;    // not null
 	 private String adresa;  // not null
 	 private String brojTelefona;  // not null
 	 private String slika; // putanja do slike 
 	 private String email;  // not null
 	 private String brojLicneKarte; 
 	 private String licnuKartuIzdao;
-	 private String mestoStanovanjaCode;
+	 private String mestoStanovanja;
 	 private String adresaStanovanja;   // u toku studija
-	 @OneToOne
+	 @OneToOne (cascade = CascadeType.ALL)
 	 private PrviUpis prviUpis;
+	 
+	 
 	 
 	public Long getId() {
 		return id;
@@ -77,29 +79,29 @@ public class StudentPodaci{
 	public void setDatumRodjenja(LocalDate datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
-	public String getMestoRodjenjaCode() {
-		return mestoRodjenjaCode;
+	public String getMestoRodjenja() {
+		return mestoRodjenja;
 	}
-	public void setMestoRodjenjaCode(String mestoRodjenjaCode) {
-		this.mestoRodjenjaCode = mestoRodjenjaCode;
+	public void setMestoRodjenja(String mestoRodjenja) {
+		this.mestoRodjenja = mestoRodjenja;
 	}
-	public String getMestoPrebivalistaCode() {
-		return mestoPrebivalistaCode;
+	public String getMestoPrebivalista() {
+		return mestoPrebivalista;
 	}
-	public void setMestoPrebivalistaCode(String mestoPrebivalistaCode) {
-		this.mestoPrebivalistaCode = mestoPrebivalistaCode;
+	public void setMestoPrebivalista(String mestoPrebivalista) {
+		this.mestoPrebivalista = mestoPrebivalista;
 	}
-	public String getDrzavaRodjenjaCode() {
-		return drzavaRodjenjaCode;
+	public String getDrzavaRodjenja() {
+		return drzavaRodjenja;
 	}
-	public void setDrzavaRodjenjaCode(String drzavaRodjenjaCode) {
-		this.drzavaRodjenjaCode = drzavaRodjenjaCode;
+	public void setDrzavaRodjenja(String drzavaRodjenja) {
+		this.drzavaRodjenja = drzavaRodjenja;
 	}
-	public String getDrzavljanstvoCode() {
-		return drzavljanstvoCode;
+	public String getDrzavljanstvo() {
+		return drzavljanstvo;
 	}
-	public void setDrzavljanstvoCode(String drzavljanstvoCode) {
-		this.drzavljanstvoCode = drzavljanstvoCode;
+	public void setDrzavljanstvo(String drzavljanstvo) {
+		this.drzavljanstvo = drzavljanstvo;
 	}
 	public String getNacionalnost() {
 		return nacionalnost;
@@ -107,10 +109,10 @@ public class StudentPodaci{
 	public void setNacionalnost(String nacionalnost) {
 		this.nacionalnost = nacionalnost;
 	}
-	public char getPol() {
+	public Character getPol() {
 		return pol;
 	}
-	public void setPol(char pol) {
+	public void setPol(Character pol) {
 		this.pol = pol;
 	}
 	public String getAdresa() {
@@ -149,11 +151,11 @@ public class StudentPodaci{
 	public void setLicnuKartuIzdao(String licnuKartuIzdao) {
 		this.licnuKartuIzdao = licnuKartuIzdao;
 	}
-	public String getMestoStanovanjaCode() {
-		return mestoStanovanjaCode;
+	public String getMestoStanovanja() {
+		return mestoStanovanja;
 	}
-	public void setMestoStanovanjaCode(String mestoStanovanjaCode) {
-		this.mestoStanovanjaCode = mestoStanovanjaCode;
+	public void setMestoStanovanja(String mestoStanovanja) {
+		this.mestoStanovanja = mestoStanovanja;
 	}
 	public String getAdresaStanovanja() {
 		return adresaStanovanja;
@@ -168,7 +170,7 @@ public class StudentPodaci{
 		this.prviUpis = prviUpis;
 	}
 	 
-
+	
 	 
 	 
 	
