@@ -16,7 +16,6 @@ public class DrziPredmet {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnore
 	private SkolskaGodina skolskaGodina;
 	
 	@ManyToOne

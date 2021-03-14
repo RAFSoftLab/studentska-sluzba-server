@@ -39,6 +39,8 @@ public class StudentProfileDTO {
 	private List<PrijavaIspita> prijaveIspita;	
 	private List<SlusaPredmet> slusaPredmete;
 	
+	private List<Predmet> nepolozeniPredmeti;
+	
 	
 	public StudentIndeks getAktivanIndeks() {
 		return aktivanIndeks;
@@ -89,6 +91,13 @@ public class StudentProfileDTO {
 	public void setPrijaveIspita(List<PrijavaIspita> prijaveIspita) {
 		this.prijaveIspita = prijaveIspita;
 	}
+	public List<Predmet> getNepolozeniPredmeti() {
+		return nepolozeniPredmeti;
+	}
+	public void setNepolozeniPredmeti(List<Predmet> nepolozeniPredmeti) {
+		this.nepolozeniPredmeti = nepolozeniPredmeti;
+	}
+	
 	
 	
 	

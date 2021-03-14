@@ -2,6 +2,7 @@ package org.raflab.studsluzba.repositories;
 
 import java.util.List;
 
+import org.raflab.studsluzba.model.Predmet;
 import org.raflab.studsluzba.model.StudentIndeks;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -24,6 +25,7 @@ public interface StudentIndeksRepository extends CrudRepository<StudentIndeks, L
 			+ "(:godina is null or indeks.godina = :godina) and "
 			+ "(:broj is null or indeks.broj = :broj)")
 	List<StudentIndeks> findStudentIndeks(String ime, String prezime, String studProgram, Integer godina, Integer broj);
+	
 	
 	
 	

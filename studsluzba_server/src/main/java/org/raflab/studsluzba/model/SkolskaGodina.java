@@ -2,6 +2,8 @@ package org.raflab.studsluzba.model;
 
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,9 @@ public class SkolskaGodina {
 	private int pocetna;
 	private int krajnja;
 	private boolean aktivna;
+	
+	private LocalDate datumPocetka;
+	
 	
 	public int getPocetna() {
 		return pocetna;
@@ -45,6 +50,12 @@ public class SkolskaGodina {
 	}
 	public void setKrajnja(int krajnja) {
 		this.krajnja = krajnja;
+	}
+	public LocalDate getDatumPocetka() {
+		return datumPocetka;
+	}
+	public void setDatumPocetka(LocalDate datumPocetka) {
+		this.datumPocetka = datumPocetka;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package org.raflab.studsluzba.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +18,15 @@ public class Uplata {
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private Long id;
 		
-		@ManyToOne
-		@JsonIgnore
+		@ManyToOne	
 		private StudentIndeks studentIndeks;
 	
 		private String nacinUplate;
 		private Float iznos;
 		private Float kurs;
+		
+		private LocalDate datum;		
+		
 		public Long getId() {
 			return id;
 		}
@@ -53,6 +57,14 @@ public class Uplata {
 		public void setKurs(Float kurs) {
 			this.kurs = kurs;
 		}
+		public LocalDate getDatum() {
+			return datum;
+		}
+		public void setDatum(LocalDate datum) {
+			this.datum = datum;
+		}
+		
+		
 		
 		
 		

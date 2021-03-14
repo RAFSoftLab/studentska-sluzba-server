@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class StudijskiProgram {
 	
@@ -25,6 +27,7 @@ public class StudijskiProgram {
 	private Integer trajanjeSemestara;
 	private String vrstaStudija; // OAS - osnovne akademske studje, OSS - osnovne strukovne, 	MAS - master akademske studije
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "studProgram")
 	private List<Predmet> predmeti;
 

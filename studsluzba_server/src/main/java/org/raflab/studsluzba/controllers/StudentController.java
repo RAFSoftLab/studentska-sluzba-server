@@ -48,7 +48,7 @@ public class StudentController {
    	    return sp.getId();
    	 }
     
-    @PostMapping(path="/addIndeks") 
+    @PostMapping(path="/addindeks") 
    	public Long addIndeks (@RequestBody StudentIndeks studentIndeks) { 
     	
    	    StudentIndeks si = studentIndeksRepository.save(studentIndeks);     	    

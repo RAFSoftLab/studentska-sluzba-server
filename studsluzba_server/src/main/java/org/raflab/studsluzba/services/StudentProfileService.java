@@ -4,6 +4,7 @@ import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.model.dtos.StudentProfileDTO;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.PolozenPredmetRepository;
+import org.raflab.studsluzba.repositories.PredmetRepository;
 import org.raflab.studsluzba.repositories.PrijavaIspitaRepository;
 import org.raflab.studsluzba.repositories.SlusaPredmetRepository;
 import org.raflab.studsluzba.repositories.StudentIndeksRepository;
@@ -41,6 +42,9 @@ public class StudentProfileService {
 	@Autowired
 	SlusaPredmetRepository slusaPredmetRepo;
 	
+	@Autowired
+	PredmetRepository predmetRepo;
+	
 	
 	public StudentProfileDTO getStudentProfile(Long indeksId) {
 		StudentProfileDTO retVal = new StudentProfileDTO();
@@ -54,6 +58,7 @@ public class StudentProfileService {
 		retVal.setUplate(uplataRepo.getUplateForIndeks(indeksId));
 		retVal.setPrijaveIspita(prijavaIspitaRepo.getPrijaveIspitaForIndeksAktivnaGodina(indeksId));	
 		retVal.setSlusaPredmete(slusaPredmetRepo.getSlusaPredmetForIndeksAktivnaGodina(indeksId));
+		retVal.setNepolozeniPredmeti(predmetRepo.getNepolozeniPredmeti(indeksId));
 		return retVal;
 	}
 

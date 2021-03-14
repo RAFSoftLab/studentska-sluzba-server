@@ -1,6 +1,7 @@
 package org.raflab.studsluzba.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UpisGodine {
@@ -19,14 +19,15 @@ public class UpisGodine {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
-	@JsonIgnore
+	@ManyToOne	
 	private StudentIndeks studentIndeks;
 	private LocalDate datumUpisa;
 	private int prenosEspb; // podrazumevano 0
 	private int godinaKojaSeUpisuje;
 	@ManyToMany
-	private Set<Predmet> predmeti;
+	private List<Predmet> predmeti;
+	@ManyToOne
+	private SkolskaGodina skolskaGodina;
 	
 	private String napomena;
 	
@@ -54,10 +55,10 @@ public class UpisGodine {
 	public void setGodinaKojaSeUpisuje(int godinaKojaSeUpisuje) {
 		this.godinaKojaSeUpisuje = godinaKojaSeUpisuje;
 	}
-	public Set<Predmet> getPredmeti() {
+	public List<Predmet> getPredmeti() {
 		return predmeti;
 	}
-	public void setPredmeti(Set<Predmet> predmeti) {
+	public void setPredmeti(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
 	public Long getId() {
@@ -72,6 +73,14 @@ public class UpisGodine {
 	public void setNapomena(String napomena) {
 		this.napomena = napomena;
 	}
+	public SkolskaGodina getSkolskaGodina() {
+		return skolskaGodina;
+	}
+	public void setSkolskaGodina(SkolskaGodina skolskaGodina) {
+		this.skolskaGodina = skolskaGodina;
+	}
+	
+	
 	
 	
 	

@@ -1,7 +1,9 @@
 package org.raflab.studsluzba.model;
 
 import java.time.LocalDate;
-import java.util.Set;
+
+import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ObnovaGodine {
@@ -21,17 +21,19 @@ public class ObnovaGodine {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnore
 	private StudentIndeks studentIndeks;
 	
 	private int godinaKojuObnavlja;	
 	
 	@ManyToMany
-	private Set<Predmet> upisujePredmete;
+	private List<Predmet> upisujePredmete;
 	
 	private LocalDate datumObnove;	
 	
 	private String napomena;
+	
+	@ManyToOne
+	private SkolskaGodina skolskaGodina;
 	
 	
 	public Long getId() {
@@ -46,10 +48,10 @@ public class ObnovaGodine {
 	public void setGodinaKojuObnavlja(int godinaKojuObnavlja) {
 		this.godinaKojuObnavlja = godinaKojuObnavlja;
 	}
-	public Set<Predmet> getUpisujePredmete() {
+	public List<Predmet> getUpisujePredmete() {
 		return upisujePredmete;
 	}
-	public void setUpisujePredmete(Set<Predmet> upisujePredmete) {
+	public void setUpisujePredmete(List<Predmet> upisujePredmete) {
 		this.upisujePredmete = upisujePredmete;
 	}
 	public StudentIndeks getStudentIndeks() {
@@ -69,6 +71,12 @@ public class ObnovaGodine {
 	}
 	public void setNapomena(String napomena) {
 		this.napomena = napomena;
+	}
+	public SkolskaGodina getSkolskaGodina() {
+		return skolskaGodina;
+	}
+	public void setSkolskaGodina(SkolskaGodina skolskaGodina) {
+		this.skolskaGodina = skolskaGodina;
 	}	
 	
 	
