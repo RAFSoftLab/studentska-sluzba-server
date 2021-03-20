@@ -9,12 +9,14 @@ import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.model.StudentPodaci;
 import org.raflab.studsluzba.model.dtos.StudentDTO;
 import org.raflab.studsluzba.model.dtos.StudentProfileDTO;
+import org.raflab.studsluzba.model.dtos.StudentWebProfileDTO;
 import org.raflab.studsluzba.repositories.StudentIndeksRepository;
 import org.raflab.studsluzba.repositories.StudentPodaciRepository;
 import org.raflab.studsluzba.services.StudentProfileService;
 import org.raflab.studsluzba.utils.EntityMappers;
 import org.raflab.studsluzba.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,15 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
+@CrossOrigin
 @RestController
 @RequestMapping(path="/student")
 public class StudentController {
 	
 	
 	@Autowired
-	StudentPodaciRepository studentPodaciRepository;	
+	StudentPodaciRepository studentPodaciRepository;
+	
 	@Autowired
 	StudentIndeksRepository studentIndeksRepository;
 	
@@ -88,6 +90,15 @@ public class StudentController {
       }else return null;
     }
     
+    @GetMapping(path="/emailsearch")  // salje se email studenta
+    public StudentIndeks emailSearch(@RequestParam String studEmail) {
+      String[] parsedData = ParseUtils.parseEmail(studEmail);
+      if(parsedData!=null) {
+    	  StudentIndeks si = studentIndeksRepository.findStudentIndeks(parsedData[0], 2000+Integer.parseInt(parsedData[1]),Integer.parseInt(parsedData[2]));	
+    	  return si;
+      }else return null;
+    }
+    
     @GetMapping(path="/search")  // pretraga po imenu, prezimenu i delovima indeksa
     public List<StudentDTO> search(@RequestParam (required = false) String ime,
     										  @RequestParam (required = false) String prezime,
@@ -107,9 +118,23 @@ public class StudentController {
     
     @GetMapping(path="/profile/{studentIndeksId}")  
     public StudentProfileDTO getStudentProfile(@PathVariable  Long studentIndeksId) {
-    	return studentProfileService.getStudentProfile(studentIndeksId);
-    	
-    	
+    	return studentProfileService.getStudentProfile(studentIndeksId);   	
+    }
+    
+    @GetMapping(path="/webprofile/{studentIndeksId}")  
+    public StudentWebProfileDTO getStudentWebProfile(@PathVariable  Long studentIndeksId) {
+    	return studentProfileService.getStudentWebProfile(studentIndeksId);   	
+    }
+    
+    @GetMapping(path="/webprofile/email")  
+    public StudentWebProfileDTO getStudentWebProfileForEmail(@RequestParam String studEmail) {
+    	 String[] parsedData = ParseUtils.parseEmail(studEmail);
+         if(parsedData!=null) {
+       	  StudentIndeks si = studentIndeksRepository.findStudentIndeks(parsedData[0], 2000+Integer.parseInt(parsedData[1]),Integer.parseInt(parsedData[2]));
+       	  if(si!=null)
+       		  return studentProfileService.getStudentWebProfile(si.getId());   	
+         }
+         return null;
     }
    
 

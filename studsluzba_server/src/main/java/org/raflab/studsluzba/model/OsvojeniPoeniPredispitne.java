@@ -19,6 +19,7 @@ public class OsvojeniPoeniPredispitne {
 	private float poeni;
 	@ManyToOne
 	private PredispitnaObaveza predispitnaObaveza;
+	
 	public Long getId() {
 		return id;
 	}

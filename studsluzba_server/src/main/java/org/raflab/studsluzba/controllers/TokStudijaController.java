@@ -34,7 +34,7 @@ public class TokStudijaController {
 	@PostMapping(path="/upis/add")
 	public Long addNewUpis(@RequestBody UpisGodine upis) {
 		UpisGodine u = upisGodineRepo.save(upis);
-		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi
+		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
 		return u.getId();
 		
 	}
@@ -42,7 +42,7 @@ public class TokStudijaController {
 	@PostMapping(path="/obnova/add")
 	public Long addNewObnova(@RequestBody ObnovaGodine obnova) {
 		ObnovaGodine o = obnovaGodineRepo.save(obnova);
-		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi
+		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
 		return o.getId();
 		
 	}

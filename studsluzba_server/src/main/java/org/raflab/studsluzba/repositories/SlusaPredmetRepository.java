@@ -17,5 +17,9 @@ public interface SlusaPredmetRepository extends CrudRepository<SlusaPredmet, Lon
 			+ "and sp.drziPredmet.nastavnik.id = :idNastavnika  "
 			+ "and sp.drziPredmet.skolskaGodina.aktivna = 1")
 	List<StudentIndeks> getStudentiSlusaPredmetAktivnaGodina(Long idPredmeta, Long idNastavnika);
+	
+	
+	@Query("select sp.studentIndeks from SlusaPredmet sp where sp.drziPredmet.id = :idDrziPredmet")		
+	List<StudentIndeks> getStudentiSlusaPredmetZaDrziPredmet(Long idDrziPredmet);
 
 }

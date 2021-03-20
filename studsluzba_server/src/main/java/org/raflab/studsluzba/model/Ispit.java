@@ -1,6 +1,7 @@
 package org.raflab.studsluzba.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -18,17 +19,18 @@ public class Ispit {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate datumOdrzavanja;    // i vreme
+	private LocalTime vremeOdrzavanja;
 	private String mestoOdrzavanja;  // ne mora da se unosi
 	
 	private boolean zakljucen = false;
+	
 	@ManyToOne
 	private DrziPredmet drziPredmet;
 	
 	@ManyToOne
 	private IspitniRok ispitniRok;
-	@OneToMany
-	private Set<PrijavaIspita> prijave;
 	
+		
 	public LocalDate getDatumOdrzavanja() {
 		return datumOdrzavanja;
 	}
@@ -60,11 +62,18 @@ public class Ispit {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Set<PrijavaIspita> getPrijave() {
-		return prijave;
+	
+	public LocalTime getVremeOdrzavanja() {
+		return vremeOdrzavanja;
 	}
-	public void setPrijave(Set<PrijavaIspita> prijave) {
-		this.prijave = prijave;
+	public void setVremeOdrzavanja(LocalTime vremeOdrzavanja) {
+		this.vremeOdrzavanja = vremeOdrzavanja;
+	}
+	public DrziPredmet getDrziPredmet() {
+		return drziPredmet;
+	}
+	public void setDrziPredmet(DrziPredmet drziPredmet) {
+		this.drziPredmet = drziPredmet;
 	}
 	
 	

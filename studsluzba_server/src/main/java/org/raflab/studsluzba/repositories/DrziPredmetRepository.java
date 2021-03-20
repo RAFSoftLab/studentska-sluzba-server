@@ -2,6 +2,7 @@ package org.raflab.studsluzba.repositories;
 
 import java.util.List;
 
+
 import org.raflab.studsluzba.model.DrziPredmet;
 import org.raflab.studsluzba.model.Predmet;
 import org.springframework.data.jpa.repository.Query;

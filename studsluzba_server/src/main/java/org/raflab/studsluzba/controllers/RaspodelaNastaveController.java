@@ -57,6 +57,11 @@ public class RaspodelaNastaveController {
 		return slusaPredmetRepo.getStudentiSlusaPredmetAktivnaGodina(idPredmeta, idNastavnika);			
 	}
 	
+	
+	/*
+	 * TODO za sledece dve operacije napraviti batch varijatu - snimanje vise elemenata u jednoj operaciji
+	 */
+	
 	@PostMapping(path="/drzipredmet/add") 
    	public Long addDrziPredmet (@RequestBody DrziPredmet drziPredmet) {  	    
    	    return drziPredmetRepo.save(drziPredmet).getId();
