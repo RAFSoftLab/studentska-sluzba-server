@@ -57,6 +57,15 @@ public class RaspodelaNastaveController {
 		return slusaPredmetRepo.getStudentiSlusaPredmetAktivnaGodina(idPredmeta, idNastavnika);			
 	}
 	
+	@GetMapping(path = "/slusapredmetaktivna/{idDrziPredmet}")
+	public List<StudentIndeks> getSlusaPredmetUAktivnojSkolskojGodiniForDrziPredmet(@PathVariable Long idDrziPredmet) {
+		return slusaPredmetRepo.getStudentiSlusaPredmetZaDrziPredmet(idDrziPredmet);			
+	}
+	
+	@GetMapping(path = "/neslusapredmetaktivna/{idDrziPredmet}")
+	public List<StudentIndeks> getNeSlusaPredmetUAktivnojSkolskojGodiniForDrziPredmet(@PathVariable Long idDrziPredmet) {
+		return slusaPredmetRepo.getStudentiNeSlusajuDrziPredmet(idDrziPredmet);	
+	}
 	
 	/*
 	 * TODO za sledece dve operacije napraviti batch varijatu - snimanje vise elemenata u jednoj operaciji

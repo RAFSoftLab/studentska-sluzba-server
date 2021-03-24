@@ -19,8 +19,7 @@ public class PrijavaIspita {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate datumPrijave;
-	@ManyToOne
-	@JsonIgnore
+	@ManyToOne	
 	private StudentIndeks studentIndeks;
 	@ManyToOne
 	private Ispit ispit;

@@ -14,8 +14,7 @@ public class SlusaPredmet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
-	@JsonIgnore
+	@ManyToOne	
 	private StudentIndeks studentIndeks;
 	
 	@ManyToOne

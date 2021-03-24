@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.raflab.studsluzba.model.Ispit;
 import org.raflab.studsluzba.model.IspitniRok;
+import org.raflab.studsluzba.model.PrijavaIspita;
+import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.model.dtos.IspitPrijavaDTO;
 import org.raflab.studsluzba.repositories.IspitRepository;
 import org.raflab.studsluzba.repositories.IspitniRokRepository;
+import org.raflab.studsluzba.repositories.PrijavaIspitaRepository;
 import org.raflab.studsluzba.services.IspitService;
 import org.raflab.studsluzba.services.StudentProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,9 @@ public class IspitiController {
 		
 		@Autowired
 		IspitRepository ispitRepo;
+		
+		@Autowired
+		PrijavaIspitaRepository prijavaIspitaRepo;
 		
 		@Autowired
 		StudentProfileService studentProfileService;
@@ -105,9 +111,24 @@ public class IspitiController {
 			return ispitService.prijaviIspit(idStudIndeks, idIspit);
 		}
 		
+		@PostMapping(path = "/prijava/add")
+		public Long prijaviIspit(@RequestBody PrijavaIspita pi) {
+			prijavaIspitaRepo.save(pi);
+			return pi.getId();
+		}
+		
 		@DeleteMapping(path = "/odjavi/{idPrijave}")
 		public boolean odjaviPrijavuIspita(@PathVariable Long idPrijave) {
 			return ispitService.odjaviPrijavuIspta(idPrijave);
 		}
 		
+		@GetMapping(path = "/prijavljeni/{idIspita}")
+		public List<StudentIndeks> getPrijavljeniZaIspit(@PathVariable Long idIspita){			
+			return prijavaIspitaRepo.getPrijavljeniZaIspit(idIspita);
+		}
+		
+		@GetMapping(path = "/neprijavljeni/{idIspita}")
+		public List<StudentIndeks> getNeprijavljeniZaIspit(@PathVariable Long idIspita){			
+			return ispitRepo.getNeprijavljeni(idIspita);
+		}
 }

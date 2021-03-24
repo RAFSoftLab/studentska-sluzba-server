@@ -1,5 +1,6 @@
 package org.raflab.studsluzba.model.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.raflab.studsluzba.model.ObnovaGodine;

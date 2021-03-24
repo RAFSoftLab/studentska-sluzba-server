@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.raflab.studsluzba.model.Ispit;
+import org.raflab.studsluzba.model.PolozenPredmet;
 import org.raflab.studsluzba.model.PrijavaIspita;
 import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.model.dtos.IspitPrijavaDTO;
