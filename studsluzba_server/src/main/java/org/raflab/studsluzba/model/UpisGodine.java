@@ -22,8 +22,8 @@ public class UpisGodine {
 	@ManyToOne	
 	private StudentIndeks studentIndeks;
 	private LocalDate datumUpisa;
-	private int prenosEspb; // podrazumevano 0
-	private int godinaKojaSeUpisuje;
+	private Integer prenosEspb; // podrazumevano 0
+	private Integer godinaKojaSeUpisuje;
 	@ManyToMany
 	private List<Predmet> predmeti;
 	@ManyToOne
@@ -43,16 +43,16 @@ public class UpisGodine {
 	public void setDatumUpisa(LocalDate datumUpisa) {
 		this.datumUpisa = datumUpisa;
 	}
-	public int getPrenosEspb() {
+	public Integer getPrenosEspb() {
 		return prenosEspb;
 	}
-	public void setPrenosEspb(int prenosEspb) {
+	public void setPrenosEspb(Integer prenosEspb) {
 		this.prenosEspb = prenosEspb;
 	}
-	public int getGodinaKojaSeUpisuje() {
+	public Integer getGodinaKojaSeUpisuje() {
 		return godinaKojaSeUpisuje;
 	}
-	public void setGodinaKojaSeUpisuje(int godinaKojaSeUpisuje) {
+	public void setGodinaKojaSeUpisuje(Integer godinaKojaSeUpisuje) {
 		this.godinaKojaSeUpisuje = godinaKojaSeUpisuje;
 	}
 	public List<Predmet> getPredmeti() {

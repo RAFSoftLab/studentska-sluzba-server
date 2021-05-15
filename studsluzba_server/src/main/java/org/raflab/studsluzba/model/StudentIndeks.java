@@ -28,12 +28,15 @@ public class StudentIndeks {
 	private Long id;
 	private int broj;
 	private int godina;
-	private String studProgram;
+	private String studProgramOznaka;
 	private String nacinFinansiranja;
 	private boolean aktivan; 
 	private LocalDate vaziOd;
 	@ManyToOne
 	private StudentPodaci student;
+	
+	@ManyToOne
+	private StudijskiProgram studijskiProgram;   // na koji studijski program je upisan
 	
 		
 	public Long getId() {
@@ -54,11 +57,18 @@ public class StudentIndeks {
 	public void setGodina(int godina) {
 		this.godina = godina;
 	}
-	public String getStudProgram() {
-		return studProgram;
+	
+	public String getStudProgramOznaka() {
+		return studProgramOznaka;
 	}
-	public void setStudProgram(String studProgram) {
-		this.studProgram = studProgram;
+	public void setStudProgramOznaka(String studProgramOznaka) {
+		this.studProgramOznaka = studProgramOznaka;
+	}
+	public StudijskiProgram getStudijskiProgram() {
+		return studijskiProgram;
+	}
+	public void setStudijskiProgram(StudijskiProgram studijskiProgram) {
+		this.studijskiProgram = studijskiProgram;
 	}
 	public boolean isAktivan() {
 		return aktivan;

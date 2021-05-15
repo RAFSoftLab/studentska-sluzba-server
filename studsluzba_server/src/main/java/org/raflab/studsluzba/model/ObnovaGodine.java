@@ -23,7 +23,7 @@ public class ObnovaGodine {
 	@ManyToOne
 	private StudentIndeks studentIndeks;
 	
-	private int godinaKojuObnavlja;	
+	private Integer godinaKojuObnavlja;	
 	
 	@ManyToMany
 	private List<Predmet> upisujePredmete;

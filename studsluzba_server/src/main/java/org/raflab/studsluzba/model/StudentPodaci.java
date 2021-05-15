@@ -31,7 +31,8 @@ public class StudentPodaci{
 	 private String nacionalnost;   // samoizjasnjavanje, moze bilo sta  
 	 private Character pol;    // not null
 	 private String adresa;  // not null
-	 private String brojTelefona;  // not null
+	 private String brojTelefonaMobilni;  
+	 private String brojTelefonaFiksni;
 	 private String slika; // putanja do slike 
 	 private String email;  // not null
 	 private String brojLicneKarte; 
@@ -121,12 +122,7 @@ public class StudentPodaci{
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public String getBrojTelefona() {
-		return brojTelefona;
-	}
-	public void setBrojTelefona(String brojTelefona) {
-		this.brojTelefona = brojTelefona;
-	}
+	
 	public String getSlika() {
 		return slika;
 	}
@@ -168,6 +164,18 @@ public class StudentPodaci{
 	}
 	public void setPrviUpis(PrviUpis prviUpis) {
 		this.prviUpis = prviUpis;
+	}
+	public String getBrojTelefonaMobilni() {
+		return brojTelefonaMobilni;
+	}
+	public void setBrojTelefonaMobilni(String brojTelefonaMobilni) {
+		this.brojTelefonaMobilni = brojTelefonaMobilni;
+	}
+	public String getBrojTelefonaFiksni() {
+		return brojTelefonaFiksni;
+	}
+	public void setBrojTelefonaFiksni(String brojTelefonaFiksni) {
+		this.brojTelefonaFiksni = brojTelefonaFiksni;
 	}
 	 
 	

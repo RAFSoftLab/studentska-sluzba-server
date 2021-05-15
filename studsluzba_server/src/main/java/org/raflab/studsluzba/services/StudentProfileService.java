@@ -65,10 +65,8 @@ public class StudentProfileService {
 	
 	public StudentProfileDTO getStudentProfile(Long indeksId) {
 		StudentProfileDTO retVal = new StudentProfileDTO();
-		StudentIndeks studIndeks = studentIndeksRepo.findById(indeksId).get();
-		Long studPodaciId = studIndeks.getStudent().getId();
-		retVal.setAktivanIndeks(studentPodaciRepo.getAktivanIndeks(studPodaciId));
-		retVal.setNeaktivniIndeksi(studentPodaciRepo.getNeaktivniIndeksi(studPodaciId));		
+		StudentIndeks studIndeks = studentIndeksRepo.findById(indeksId).get();		
+		retVal.setIndeks(studIndeks);		
 		retVal.setPolozeniPredmeti(polozeniPredmetRepo.getPolozeniPredmetForIndeks(indeksId));
 		retVal.setUpisiGodine(upisGodineRepo.getUpisiForIndeks(indeksId));
 		retVal.setObnoveGodine(obnovaGodineRepo.getObnoveForIndeks(indeksId));

@@ -33,10 +33,13 @@ public class SifarniciController {
       return srednjeSkoleRepository.findAll();
     }
 	
-	 @PostMapping(path="/srednjaskola/add") 
-	 public Long addSrednjaSkola (@RequestBody SrednjaSkola srednjaSkola) {	    	
-	  	    SrednjaSkola sp = srednjeSkoleRepository.save(srednjaSkola);   	   	    
-	   	    return sp.getId();
-	   	 }
+	@PostMapping(path="/srednjaskola/add") 
+	public Long addSrednjaSkola (@RequestBody SrednjaSkola srednjaSkola) {	    	
+	    SrednjaSkola sp = srednjeSkoleRepository.save(srednjaSkola);   	   	    
+	    return sp.getId();
+	}
+	
+	
+	 	
 
 }

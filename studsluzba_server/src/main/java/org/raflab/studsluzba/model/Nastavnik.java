@@ -1,5 +1,6 @@
 package org.raflab.studsluzba.model;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 
@@ -25,6 +26,11 @@ public class Nastavnik {
 	 private String adresa;	 
 	 @OneToMany(mappedBy = "nastavnik")
 	 private Set<NastavnikZvanje> zvanja;
+	 
+	 private LocalDate datumRodjenja;
+	 private Character pol;
+	 private String jmbg;
+	 
 	 
 	public Long getId() {
 		return id;
@@ -74,8 +80,26 @@ public class Nastavnik {
 	public void setZvanja(Set<NastavnikZvanje> zvanja) {
 		this.zvanja = zvanja;
 	}
+	public LocalDate getDatumRodjenja() {
+		return datumRodjenja;
+	}
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
+		this.datumRodjenja = datumRodjenja;
+	}
+	public Character getPol() {
+		return pol;
+	}
+	public void setPol(Character pol) {
+		this.pol = pol;
+	}
+	public String getJmbg() {
+		return jmbg;
+	}
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
+	}
 	 
-	 
+	
 	 
 	 
 	

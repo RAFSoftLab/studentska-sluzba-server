@@ -25,8 +25,9 @@ public class StudentDTO {
 	private String prezime; 
 	// indeks
 	private int godinaUpisa;
-	private String studProgram;
+	private String studProgramOznaka;
 	private int broj;
+	private boolean aktivanIndeks;
 	
 	
 	
@@ -61,17 +62,26 @@ public class StudentDTO {
 	public void setGodinaUpisa(int godinaUpisa) {
 		this.godinaUpisa = godinaUpisa;
 	}
-	public String getStudProgram() {
-		return studProgram;
+	
+	
+	
+	public String getStudProgramOznaka() {
+		return studProgramOznaka;
 	}
-	public void setStudProgram(String studProgram) {
-		this.studProgram = studProgram;
+	public void setStudProgramOznaka(String studProgramOznaka) {
+		this.studProgramOznaka = studProgramOznaka;
 	}
 	public int getBroj() {
 		return broj;
 	}
 	public void setBroj(int broj) {
 		this.broj = broj;
+	}
+	public boolean isAktivanIndeks() {
+		return aktivanIndeks;
+	}
+	public void setAktivanIndeks(boolean aktivanIndeks) {
+		this.aktivanIndeks = aktivanIndeks;
 	}
 	
 	

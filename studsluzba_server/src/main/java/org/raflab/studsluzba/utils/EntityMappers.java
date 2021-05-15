@@ -20,7 +20,8 @@ public class EntityMappers {
 		s.setIdIndeks(si.getId());
 		s.setGodinaUpisa(si.getGodina());
 		s.setBroj(si.getBroj());
-		s.setStudProgram(si.getStudProgram());
+		s.setStudProgramOznaka(si.getStudProgramOznaka());
+		s.setAktivanIndeks(si.isAktivan());
 		return s;
 		
 	}

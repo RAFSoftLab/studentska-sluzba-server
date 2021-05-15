@@ -8,6 +8,8 @@ import org.raflab.studsluzba.model.IspitniRok;
 import org.raflab.studsluzba.model.PrijavaIspita;
 import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.model.dtos.IspitPrijavaDTO;
+import org.raflab.studsluzba.model.dtos.RezultatIspitaDTO;
+import org.raflab.studsluzba.model.dtos.StudentIndeksPredispitneDTO;
 import org.raflab.studsluzba.repositories.IspitRepository;
 import org.raflab.studsluzba.repositories.IspitniRokRepository;
 import org.raflab.studsluzba.repositories.PrijavaIspitaRepository;
@@ -119,7 +121,7 @@ public class IspitiController {
 		
 		@DeleteMapping(path = "/odjavi/{idPrijave}")
 		public boolean odjaviPrijavuIspita(@PathVariable Long idPrijave) {
-			return ispitService.odjaviPrijavuIspta(idPrijave);
+			return ispitService.odjaviPrijavuIspit(idPrijave);
 		}
 		
 		@GetMapping(path = "/prijavljeni/{idIspita}")
@@ -131,4 +133,20 @@ public class IspitiController {
 		public List<StudentIndeks> getNeprijavljeniZaIspit(@PathVariable Long idIspita){			
 			return ispitRepo.getNeprijavljeni(idIspita);
 		}
+		
+		@GetMapping(path = "/{idNastavnik}/{idPredmet}/{idIspitniRok}")
+		public Ispit getIspitForNastavnikPredmetIspitniRokAktivna(@PathVariable Long idNastavnik,@PathVariable Long idPredmet,@PathVariable Long idIspitniRok) {
+			return ispitRepo.getIspitForNastavnikPredmetIspitniRokAktivna(idNastavnik, idPredmet, idIspitniRok);
+		}
+		
+		@GetMapping(path = "/prijavljenisapredispitnim/{idIspita}")
+		public List<StudentIndeksPredispitneDTO> getPrijavljeniSaPredispitnimZaIspit(@PathVariable Long idIspita){			
+			return ispitService.getPrijavljeniSaPredispitnimZaIspit(idIspita);
+		}
+		
+		@PostMapping(path = "/rezultati/add")
+		public void saveRezultatiIspita(@RequestBody List<RezultatIspitaDTO> rezultati) {
+			ispitService.saveRezultatiIspita(rezultati);
+		}
+		
 }

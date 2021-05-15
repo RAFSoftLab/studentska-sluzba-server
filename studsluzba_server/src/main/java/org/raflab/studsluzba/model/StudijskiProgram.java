@@ -26,6 +26,7 @@ public class StudijskiProgram {
 	private Integer trajanjeGodina;
 	private Integer trajanjeSemestara;
 	private String vrstaStudija; // OAS - osnovne akademske studje, OSS - osnovne strukovne, 	MAS - master akademske studije
+	private Integer ukupnoEspb;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "studProgram")
@@ -101,6 +102,14 @@ public class StudijskiProgram {
 
 	public void setPredmeti(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
+	}
+
+	public Integer getUkupnoEspb() {
+		return ukupnoEspb;
+	}
+
+	public void setUkupnoEspb(Integer ukupnoEspb) {
+		this.ukupnoEspb = ukupnoEspb;
 	}
 	
 	

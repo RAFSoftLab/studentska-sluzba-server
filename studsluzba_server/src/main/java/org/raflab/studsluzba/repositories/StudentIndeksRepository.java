@@ -12,21 +12,22 @@ import org.springframework.stereotype.Repository;
 public interface StudentIndeksRepository extends CrudRepository<StudentIndeks, Long> {
 	
 	
-	@Query("select indeks from StudentIndeks indeks where indeks.studProgram like ?1 and indeks.godina = ?2 "
+	@Query("select indeks from StudentIndeks indeks where indeks.studProgramOznaka like ?1 and indeks.godina = ?2 "
 			+ "and indeks.broj = ?3 ")
-    StudentIndeks findStudentIndeks(String studProgram, int godina, int broj);
+    StudentIndeks findStudentIndeks(String studProgramOznaka, int godina, int broj);
 	
 	
 	//TODO dodati da se gledaju samo aktivni indeksi
 	@Query("select indeks from StudentIndeks indeks where "
 			+ "(:ime is null or lower(indeks.student.ime) like :ime) and "
 			+ "(:prezime is null or lower(indeks.student.prezime) like :prezime) and "
-			+ "(:studProgram is null or lower(indeks.studProgram) like :studProgram) and"
+			+ "(:studProgramOznaka is null or lower(indeks.studProgramOznaka) like :studProgramOznaka) and"
 			+ "(:godina is null or indeks.godina = :godina) and "
 			+ "(:broj is null or indeks.broj = :broj)")
-	List<StudentIndeks> findStudentIndeks(String ime, String prezime, String studProgram, Integer godina, Integer broj);
+	List<StudentIndeks> findStudentIndeks(String ime, String prezime, String studProgramOznaka, Integer godina, Integer broj);
 	
-	
+	@Query("select si from StudentIndeks si where si.student.id = :idStudentPodaci")
+	List<StudentIndeks> findStudentIndeksiForStudentPodaciId(Long idStudentPodaci);
 	
 	
 	

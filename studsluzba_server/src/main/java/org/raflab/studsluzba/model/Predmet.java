@@ -28,9 +28,9 @@ public class Predmet {
 	private StudijskiProgram studProgram;
 	private Integer fondPredavanja;
 	private Integer fondVezbe;
+	private String izbornaGrupa;
 	
-	private Boolean obavezan;
-	
+		
 
 	public Long getId() {
 		return id;
@@ -115,12 +115,14 @@ public class Predmet {
 			return false;
 		return true;
 	}
-	public Boolean getObavezan() {
-		return obavezan;
+	public String getIzbornaGrupa() {
+		return izbornaGrupa;
 	}
-	public void setObavezan(Boolean obavezan) {
-		this.obavezan = obavezan;
-	}	
+	public void setIzbornaGrupa(String izbornaGrupa) {
+		this.izbornaGrupa = izbornaGrupa;
+	}
+	
+	
 	
 	
 	

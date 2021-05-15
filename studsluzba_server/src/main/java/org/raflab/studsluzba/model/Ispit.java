@@ -22,13 +22,16 @@ public class Ispit {
 	private LocalTime vremeOdrzavanja;
 	private String mestoOdrzavanja;  // ne mora da se unosi
 	
-	private boolean zakljucen = false;
+	
 	
 	@ManyToOne
 	private DrziPredmet drziPredmet;
 	
 	@ManyToOne
 	private IspitniRok ispitniRok;
+	
+	private LocalDate datumPredajeZapisnika;
+	private LocalDate datumVerifikacije;
 	
 		
 	public LocalDate getDatumOdrzavanja() {
@@ -42,13 +45,7 @@ public class Ispit {
 	}
 	public void setMestoOdrzavanja(String mestoOdrzavanja) {
 		this.mestoOdrzavanja = mestoOdrzavanja;
-	}
-	public boolean isZakljucen() {
-		return zakljucen;
-	}
-	public void setZakljucen(boolean zakljucen) {
-		this.zakljucen = zakljucen;
-	}
+	}	
 		
 	public IspitniRok getIspitniRok() {
 		return ispitniRok;
@@ -74,6 +71,18 @@ public class Ispit {
 	}
 	public void setDrziPredmet(DrziPredmet drziPredmet) {
 		this.drziPredmet = drziPredmet;
+	}
+	public LocalDate getDatumPredajeZapisnika() {
+		return datumPredajeZapisnika;
+	}
+	public void setDatumPredajeZapisnika(LocalDate datumPredajeZapisnika) {
+		this.datumPredajeZapisnika = datumPredajeZapisnika;
+	}
+	public LocalDate getDatumVerifikacije() {
+		return datumVerifikacije;
+	}
+	public void setDatumVerifikacije(LocalDate datumVerifikacije) {
+		this.datumVerifikacije = datumVerifikacije;
 	}
 	
 	

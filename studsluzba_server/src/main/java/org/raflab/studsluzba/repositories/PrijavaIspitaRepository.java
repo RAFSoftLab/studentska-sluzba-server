@@ -19,5 +19,12 @@ public interface PrijavaIspitaRepository extends CrudRepository<PrijavaIspita, L
 	@Query("select pi.studentIndeks from PrijavaIspita pi where pi.ispit.id = :idIspita")
 	List<StudentIndeks> getPrijavljeniZaIspit(Long idIspita);
 	
+	@Query("select pi from PrijavaIspita pi where pi.ispit.id = :idIspita")
+	List<PrijavaIspita> getPrijaveZaIspit(Long idIspita);
+	
+	@Query("select pi from PrijavaIspita pi where pi.ispit.drziPredmet.skolskaGodina.aktivna=1 and pi.ispit.drziPredmet.nastavnik.id = :idNastavnik "
+			+ "and pi.ispit.drziPredmet.predmet.id = :idPredmet and pi.ispit.ispitniRok.id = :idIspitniRok")
+	List<PrijavaIspita> getPrijavljeniForIspitNastavnikPredmetIspitniRokAktivna(Long idNastavnik, Long idPredmet, Long idIspitniRok); 
+	
 	
 }

@@ -9,6 +9,7 @@ import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.repositories.DrziPredmetRepository;
 import org.raflab.studsluzba.repositories.SlusaPredmetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * i koji student slusa koji predmet 
  * 
  */
-
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/raspodelanastave")
 public class RaspodelaNastaveController {

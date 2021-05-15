@@ -28,8 +28,7 @@ import org.raflab.studsluzba.model.Uplata;
 
 public class StudentProfileDTO {
 	
-	private StudentIndeks aktivanIndeks;  
-	private List<StudentIndeks> neaktivniIndeksi;
+	private StudentIndeks indeks;	
 	private List<PolozenPredmet> polozeniPredmeti;
 	private List<UpisGodine> upisiGodine;
 	private List<ObnovaGodine> obnoveGodine;	
@@ -43,11 +42,12 @@ public class StudentProfileDTO {
 	private List<Predmet> nepolozeniPredmeti;
 	
 	
-	public StudentIndeks getAktivanIndeks() {
-		return aktivanIndeks;
+	
+	public StudentIndeks getIndeks() {
+		return indeks;
 	}
-	public void setAktivanIndeks(StudentIndeks studentIndeks) {
-		this.aktivanIndeks = studentIndeks;
+	public void setIndeks(StudentIndeks indeks) {
+		this.indeks = indeks;
 	}
 	public List<PolozenPredmet> getPolozeniPredmeti() {
 		return polozeniPredmeti;
@@ -80,12 +80,7 @@ public class StudentProfileDTO {
 	public void setObnoveGodine(List<ObnovaGodine> obnoveGodine) {
 		this.obnoveGodine = obnoveGodine;
 	}
-	public List<StudentIndeks> getNeaktivniIndeksi() {
-		return neaktivniIndeksi;
-	}
-	public void setNeaktivniIndeksi(List<StudentIndeks> neaktivniIndeksi) {
-		this.neaktivniIndeksi = neaktivniIndeksi;
-	}
+	
 	public List<PrijavaIspita> getPrijaveIspita() {
 		return prijaveIspita;
 	}

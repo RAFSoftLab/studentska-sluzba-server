@@ -26,6 +26,11 @@ public interface IspitRepository extends CrudRepository<Ispit, Long> {
 	@Query("select sp.studentIndeks from SlusaPredmet sp where sp.drziPredmet = (select i.drziPredmet from Ispit i where i.id = :idIspita) "
 			+ "and not exists (select pi from PrijavaIspita pi where pi.ispit.id = :idIspita and pi.studentIndeks = sp.studentIndeks)")
 	List<StudentIndeks> getNeprijavljeni(Long idIspita);
+	
+	
+	@Query("select i from Ispit i where i.drziPredmet.skolskaGodina.aktivna=1 and i.drziPredmet.nastavnik.id = :idNastavnik "
+			+ "and i.drziPredmet.predmet.id = :idPredmet and i.ispitniRok.id = :idIspitniRok")
+	Ispit getIspitForNastavnikPredmetIspitniRokAktivna(Long idNastavnik, Long idPredmet, Long idIspitniRok);
 
 
 }

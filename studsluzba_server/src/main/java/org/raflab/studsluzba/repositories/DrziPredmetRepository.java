@@ -24,5 +24,10 @@ public interface DrziPredmetRepository extends CrudRepository<DrziPredmet, Long>
 	
 	@Query("select dp.predmet from DrziPredmet dp where dp.skolskaGodina.aktivna = 1 and dp.nastavnik.id = :idNastavnika")
 	List<Predmet> getPredmetiZaNastavnikaUAktivnojSkolskojGodini(Long idNastavnika);
+	
+	@Query("select dp from DrziPredmet dp where dp.skolskaGodina.aktivna=1 "
+			+ "and dp.nastavnik.id = :idNastavnik "
+			+ "and dp.predmet.id = :idPredmet")
+	DrziPredmet getDrziPredmetNastavnikPredmetAktivna(Long idPredmet, Long idNastavnik);
 
 }

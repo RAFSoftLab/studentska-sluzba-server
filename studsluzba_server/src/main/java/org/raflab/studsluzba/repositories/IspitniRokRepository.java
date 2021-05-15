@@ -15,7 +15,7 @@ public interface IspitniRokRepository extends CrudRepository<IspitniRok, Long> {
 	
 	
 	
-	@Query("select ir from IspitniRok ir where ir.datumPocetkaPrijave<=CURRENT_DATE and ir.datumZavrsetka>=CURRENT_DATE")
+	@Query("select ir from IspitniRok ir where ir.skolskaGodina.aktivna=1") //where ir.datumPocetkaPrijave<=CURRENT_DATE and ir.datumZavrsetka>=CURRENT_DATE")
 	List<IspitniRok> getAktivniIspitniRokovi();
 		
 	

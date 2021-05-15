@@ -11,8 +11,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudijskiProgramRepository extends CrudRepository<StudijskiProgram, Long> {
 	
-	@Query("select oznaka from StudijskiProgram")
+	@Query("select distinct oznaka from StudijskiProgram")
     List<String> findAllOznaka();
+	
+	@Query("select sp from StudijskiProgram sp order by sp.godinaAkreditacije desc")
+	List<StudijskiProgram> getAllSortedByGodinaDesc();
 	
 
 }

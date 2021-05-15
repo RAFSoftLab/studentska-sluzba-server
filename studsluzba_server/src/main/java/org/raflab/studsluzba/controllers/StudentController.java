@@ -1,6 +1,7 @@
 package org.raflab.studsluzba.controllers;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,11 +51,10 @@ public class StudentController {
    	    return sp.getId();
    	 }
     
-    @PostMapping(path="/addindeks") 
-   	public Long addIndeks (@RequestBody StudentIndeks studentIndeks) { 
+    @PostMapping(path="/saveindeks") 
+   	public Long saveIndeks (@RequestBody StudentIndeks studentIndeks) { 
     	
    	    StudentIndeks si = studentIndeksRepository.save(studentIndeks);     	    
-   	    
    	    return si.getId();
    	 }
     
@@ -81,6 +81,12 @@ public class StudentController {
     	    	
     }
     
+    @GetMapping(path="/indeksi/{idStudentPodaci}")
+    public List<StudentIndeks> getIndeksiForStudentPodaciId(@PathVariable Long idStudentPodaci){
+    	return studentIndeksRepository.findStudentIndeksiForStudentPodaciId(idStudentPodaci);
+    	
+    }
+    
     @GetMapping(path="/fastsearch")  // salje se string oblika rn1923 - smer godina broj
     public StudentIndeks fastSearch(@RequestParam String indeksShort) {
       String[] parsedData = ParseUtils.parseIndeks(indeksShort);
@@ -99,12 +105,12 @@ public class StudentController {
       }else return null;
     }
     
-    @GetMapping(path="/search")  // pretraga po imenu, prezimenu i delovima indeksa
+    @GetMapping(path="/search")  // pretraga po imenu, prezimenu i elementima indeksa
     public List<StudentDTO> search(@RequestParam (required = false) String ime,
     										  @RequestParam (required = false) String prezime,
     										  @RequestParam (required = false) String studProgram,
     										  @RequestParam (required = false) Integer godina,
-    										  @RequestParam (required = false) Integer broj) {
+    										  @RequestParam (required = false) Integer broj) {    	
     	List<StudentDTO> retVal = new ArrayList<StudentDTO>();	
     	if(studProgram==null && godina == null && broj==null) { // pretrazivanje studenata bez indeksa
     		List<StudentPodaci> spList = studentPodaciRepository.findStudent(ime, prezime);
@@ -137,5 +143,5 @@ public class StudentController {
          return null;
     }
    
-
+    
 }
