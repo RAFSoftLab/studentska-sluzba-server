@@ -1,6 +1,8 @@
 # studentska-sluzba-server
 Studentska služba - backend
 
+Klijentska strana: https://github.com/RAFSoftLab/studentska-sluzba-desktopclient
+
 Urađeno
 
 - osnovna maven konfiguracija
