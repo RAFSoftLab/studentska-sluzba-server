@@ -21,9 +21,7 @@ public class Ispit {
 	private LocalDate datumOdrzavanja;    // i vreme
 	private LocalTime vremeOdrzavanja;
 	private String mestoOdrzavanja;  // ne mora da se unosi
-	
-	
-	
+
 	@ManyToOne
 	private DrziPredmet drziPredmet;
 	

@@ -25,7 +25,7 @@ public interface NastavnikRepository extends CrudRepository<Nastavnik, Long> {	/
 	@Query("select sp from Nastavnik sp where "
 			+ "(:ime is null or lower(sp.ime) like :ime) and "
 			+ "(:prezime is null or lower(sp.prezime) like :prezime)")			
-	List<Nastavnik> findNastavnik(String ime, String prezime);
+	List<Nastavnik> findByImeAndPrezime(String ime, String prezime);
 	
 }
 
