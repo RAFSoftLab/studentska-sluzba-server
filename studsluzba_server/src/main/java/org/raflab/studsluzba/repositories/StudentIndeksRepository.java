@@ -2,10 +2,10 @@ package org.raflab.studsluzba.repositories;
 
 import java.util.List;
 
-import org.raflab.studsluzba.model.Predmet;
 import org.raflab.studsluzba.model.StudentIndeks;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -28,7 +28,9 @@ public interface StudentIndeksRepository extends CrudRepository<StudentIndeks, L
 	
 	@Query("select si from StudentIndeks si where si.student.id = :idStudentPodaci")
 	List<StudentIndeks> findStudentIndeksiForStudentPodaciId(Long idStudentPodaci);
-	
-	
-	
-	}
+
+	@Query("SELECT s.broj FROM StudentIndeks s WHERE s.godina = :godina AND s.studProgramOznaka = :studProgramOznaka AND s.aktivan = true ORDER BY s.broj ASC")
+	List<Integer> findBrojeviByGodinaAndStudProgramOznaka(@Param("godina") int godina, @Param("studProgramOznaka") String studProgramOznaka);
+
+
+}
