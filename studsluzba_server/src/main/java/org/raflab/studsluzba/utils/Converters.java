@@ -106,7 +106,6 @@ public class Converters {
         studentPodaci.setAdresa(request.getAdresa());
         studentPodaci.setBrojTelefonaMobilni(request.getBrojTelefonaMobilni());
         studentPodaci.setBrojTelefonaFiksni(request.getBrojTelefonaFiksni());
-        studentPodaci.setSlika(request.getSlika());
         studentPodaci.setEmail(request.getEmail());
         studentPodaci.setBrojLicneKarte(request.getBrojLicneKarte());
         studentPodaci.setLicnuKartuIzdao(request.getLicnuKartuIzdao());
@@ -123,7 +122,6 @@ public class Converters {
         studentIndeks.setNacinFinansiranja(studentIndeksRequest.getNacinFinansiranja());
         studentIndeks.setAktivan(studentIndeksRequest.isAktivan());
         studentIndeks.setVaziOd(studentIndeksRequest.getVaziOd());
-        studentIndeks.setStudijskiProgram(studentIndeksRequest.getStudijskiProgram());
         return studentIndeks;
     }
 }

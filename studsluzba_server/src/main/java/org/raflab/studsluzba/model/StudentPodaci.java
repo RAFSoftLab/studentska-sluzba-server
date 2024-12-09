@@ -5,12 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -33,7 +28,8 @@ public class StudentPodaci {
 	 private String adresa;  // not null
 	 private String brojTelefonaMobilni;  
 	 private String brojTelefonaFiksni;
-	 private String slika; // putanja do slike 
+	 @Lob
+	 private byte[] slika; // putanja do slike
 	 private String email;  // not null
 	 private String brojLicneKarte; 
 	 private String licnuKartuIzdao;

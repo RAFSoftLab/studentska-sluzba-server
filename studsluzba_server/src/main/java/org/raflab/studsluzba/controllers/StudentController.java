@@ -24,6 +24,8 @@ import org.raflab.studsluzba.utils.EntityMappers;
 import org.raflab.studsluzba.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin
 @RestController
@@ -60,6 +63,47 @@ public class StudentController {
    	    
    	    return sp.getId();
  	}
+
+	@PostMapping("/{studentId}/uploadImage")
+	public ResponseEntity<String> uploadImage(
+			@PathVariable Long studentId,
+			@RequestParam("image") MultipartFile file) {
+
+		try {
+			StudentPodaci studentPodaci = studentPodaciRepository.findById(studentId)
+					.orElseThrow(() -> new RuntimeException("StudentPodaci not found with id: " + studentId));
+
+			String contentType = file.getContentType();
+			if (contentType == null || !contentType.startsWith("image/")) {
+				return ResponseEntity.badRequest().body("Invalid file type. Please upload an image.");
+			}
+
+			studentPodaci.setSlika(file.getBytes());
+
+			studentPodaciRepository.save(studentPodaci);
+
+			return ResponseEntity.ok("Image uploaded successfully.");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Failed to upload image: " + e.getMessage());
+		}
+	}
+
+	@GetMapping("/{studentId}/image")
+	public ResponseEntity<byte[]> getImage(@PathVariable Long studentId) {
+		try {
+			StudentPodaci studentPodaci = studentPodaciRepository.findById(studentId)
+					.orElseThrow(() -> new RuntimeException("StudentPodaci not found with id: " + studentId));
+
+			byte[] image = studentPodaci.getSlika();
+
+			return ResponseEntity.ok()
+					.header("Content-Type", "image/jpeg") // or image/png based on your data
+					.body(image);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+	}
 
 	@GetMapping(path="/all")
 	public Iterable<StudentPodaci> getAllStudentPodaci() {
