@@ -24,6 +24,10 @@ import org.raflab.studsluzba.utils.EntityMappers;
 import org.raflab.studsluzba.utils.ParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -110,6 +114,11 @@ public class StudentController {
 		return studentPodaciRepository.findAll();
 	}
 
+	@GetMapping(path="/svi")
+	public Page<StudentPodaci> getAllStudentPodaciPaginated(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+		return studentPodaciRepository.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
+	}
+
 	@GetMapping(path="/podaci/{id}")
 	public StudentPodaci getStudentPodaci(@PathVariable Long id){
 		Optional<StudentPodaci> rez = studentPodaciRepository.findById(id);
@@ -181,20 +190,20 @@ public class StudentController {
     }
     
     @GetMapping(path="/search")  // pretraga po imenu, prezimenu i elementima indeksa
-    public List<StudentDTO> search(@RequestParam (required = false) String ime,
-    										  @RequestParam (required = false) String prezime,
-    										  @RequestParam (required = false) String studProgram,
-    										  @RequestParam (required = false) Integer godina,
-    										  @RequestParam (required = false) Integer broj) {    	
-    	List<StudentDTO> retVal = new ArrayList<StudentDTO>();	
-    	if(studProgram==null && godina == null && broj==null) { // pretrazivanje studenata bez indeksa
-    		List<StudentPodaci> spList = studentPodaciRepository.findStudent(ime, prezime);
-    		retVal = spList.stream().map(EntityMappers::fromStudentPodaciToDTO).collect(Collectors.toList());
+    public Page<StudentDTO> search(@RequestParam (required = false) String ime,
+								   @RequestParam (required = false) String prezime,
+								   @RequestParam (required = false) String studProgram,
+								   @RequestParam (required = false) Integer godina,
+								   @RequestParam (required = false) Integer broj,
+								   @RequestParam(defaultValue = "0") Integer page,
+								   @RequestParam(defaultValue = "10") Integer size) {
+
+		if(studProgram==null && godina == null && broj==null) { // pretrazivanje studenata bez indeksa
+    		Page<StudentPodaci> spList = studentPodaciRepository.findStudent(ime, prezime, PageRequest.of(page, size, Sort.by("id").descending()));
+			return spList.map(EntityMappers::fromStudentPodaciToDTO);
     	}
-    	List<StudentIndeks> siList = studentIndeksRepository.findStudentIndeks(ime, prezime, studProgram, godina, broj);
-    	List<StudentDTO> addedElem = siList.stream().map(EntityMappers::fromStudentIndeksToDTO).collect(Collectors.toList());
-    	retVal.addAll(addedElem);
-    	return retVal;
+    	Page<StudentIndeks> siList = studentIndeksRepository.findStudentIndeks(ime, prezime, studProgram, godina, broj, PageRequest.of(page, size, Sort.by("id").descending()));
+		return siList.map(EntityMappers::fromStudentIndeksToDTO);
     }
     
     @GetMapping(path="/profile/{studentIndeksId}")  

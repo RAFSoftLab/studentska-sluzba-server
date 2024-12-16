@@ -1,6 +1,7 @@
 package org.raflab.studsluzba.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class StudentPodaci {
 	 private String brojTelefonaMobilni;  
 	 private String brojTelefonaFiksni;
 	 @Lob
+	 @JsonIgnore
 	 private byte[] slika; // putanja do slike
 	 private String email;  // not null
 	 private String brojLicneKarte; 
