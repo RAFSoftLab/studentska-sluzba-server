@@ -1,5 +1,6 @@
 package org.raflab.studsluzba.services;
 
+import org.raflab.studsluzba.model.StudentIndeks;
 import org.raflab.studsluzba.repositories.StudentIndeksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,9 @@ public class StudentIndeksService {
         }
 
         return expected; // No gap
+    }
+
+    public StudentIndeks findByStudentIdAndAktivan(Long studentPodaciId) {
+        return studentIndeksRepository.findAktivanStudentIndeksiByStudentPodaciId(studentPodaciId);
     }
 }

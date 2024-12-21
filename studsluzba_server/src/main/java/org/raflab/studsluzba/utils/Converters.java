@@ -1,15 +1,9 @@
 package org.raflab.studsluzba.utils;
 
-import org.raflab.studsluzba.controllers.request.IspitniRokRequest;
-import org.raflab.studsluzba.controllers.request.NastavnikRequest;
-import org.raflab.studsluzba.controllers.request.StudentIndeksRequest;
-import org.raflab.studsluzba.controllers.request.StudentPodaciRequest;
+import org.raflab.studsluzba.controllers.request.*;
 import org.raflab.studsluzba.controllers.response.IspitniRokResponse;
 import org.raflab.studsluzba.controllers.response.NastavnikResponse;
-import org.raflab.studsluzba.model.IspitniRok;
-import org.raflab.studsluzba.model.Nastavnik;
-import org.raflab.studsluzba.model.StudentIndeks;
-import org.raflab.studsluzba.model.StudentPodaci;
+import org.raflab.studsluzba.model.*;
 
 import java.util.ArrayList;
 import java.util.List;

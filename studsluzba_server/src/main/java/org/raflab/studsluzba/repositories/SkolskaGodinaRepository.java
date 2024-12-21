@@ -8,7 +8,8 @@ public interface SkolskaGodinaRepository extends CrudRepository<SkolskaGodina, L
 	
 	@Query("select s from SkolskaGodina s where s.aktivna=1")
 	SkolskaGodina getAktivnaSkolskaGodina();
-	
+
+	SkolskaGodina findTopByOrderByKrajnjaDesc();
 	
 
 }

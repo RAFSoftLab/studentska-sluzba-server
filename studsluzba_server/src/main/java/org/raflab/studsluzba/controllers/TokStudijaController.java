@@ -1,10 +1,14 @@
 package org.raflab.studsluzba.controllers;
 
+import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
+import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
 import org.raflab.studsluzba.model.ObnovaGodine;
 import org.raflab.studsluzba.model.UpisGodine;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.UpisGodineRepository;
 import org.raflab.studsluzba.repositories.UplataRepository;
+import org.raflab.studsluzba.services.TokStudijaService;
+import org.raflab.studsluzba.utils.Converters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,38 +24,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path="/tok")
 public class TokStudijaController {
-	
+
 	@Autowired
-	UpisGodineRepository upisGodineRepo;
-	
-	
-	@Autowired
-	ObnovaGodineRepository obnovaGodineRepo;
+	TokStudijaService tokStudijaService;
 	
 	@Autowired
 	UplataRepository uplataRepository;
 	
 	@PostMapping(path="/upis/add")
-	public Long addNewUpis(@RequestBody UpisGodine upis) {
-		UpisGodine u = upisGodineRepo.save(upis);
-		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
-		return u.getId();
-		
+	public Long addNewUpis(@RequestBody UpisGodineRequest request) {
+
+		return tokStudijaService.addUpis(request);
 	}
 	
 	@PostMapping(path="/obnova/add")
-	public Long addNewObnova(@RequestBody ObnovaGodine obnova) {
-		ObnovaGodine o = obnovaGodineRepo.save(obnova);
-		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
-		return o.getId();
+	public Long addNewObnova(@RequestBody ObnovaGodineRequest request) {
+
+		return tokStudijaService.addObnovaGodine(request);
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-		
 }
