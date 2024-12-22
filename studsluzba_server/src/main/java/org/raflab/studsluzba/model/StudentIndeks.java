@@ -23,5 +23,6 @@ public class StudentIndeks {
 	
 	@ManyToOne
 	private StudijskiProgram studijskiProgram;   // na koji studijski program je upisan
+	private Integer ostvarenoEspb;
 
 }

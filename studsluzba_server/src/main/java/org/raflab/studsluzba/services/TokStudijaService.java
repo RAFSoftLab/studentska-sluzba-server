@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TokStudijaService {
@@ -33,11 +34,20 @@ public class TokStudijaService {
         StudentIndeks studentIndeks = studentIndeksService.findByStudentIdAndAktivan(request.getStudentId());
         SkolskaGodina skolskaGodina = skolskaGodinaService.getNewSkolskaGodina();
 
+        List<Integer> upisaneGodine = upisGodineRepo.getUpisaneGodineForStudentIndeks(studentIndeks.getId());
+
         UpisGodine upisGodine = new UpisGodine();
         upisGodine.setStudentIndeks(studentIndeks);
         upisGodine.setDatumUpisa(LocalDate.now());
-        upisGodine.setPrenosEspb(request.getPrenosEspb());
-        upisGodine.setGodinaKojaSeUpisuje(request.getGodinaKojaSeUpisuje());
+
+        if (upisaneGodine.isEmpty()) {  //upis u prvu godinu
+            upisGodine.setPrenosEspb(0);
+            upisGodine.setGodinaKojaSeUpisuje(1);
+        } else {
+            upisGodine.setPrenosEspb(upisaneGodine.get(0)*60 - studentIndeks.getOstvarenoEspb());
+            upisGodine.setGodinaKojaSeUpisuje(upisaneGodine.get(0) + 1);
+        }
+
         upisGodine.setSkolskaGodina(skolskaGodina);
         upisGodine.setNapomena(request.getNapomena());
 
@@ -50,10 +60,12 @@ public class TokStudijaService {
         StudentIndeks studentIndeks = studentIndeksService.findByStudentIdAndAktivan(request.getStudentId());
         SkolskaGodina skolskaGodina = skolskaGodinaService.getNewSkolskaGodina();
 
+        List<Integer> upisaneGodine = upisGodineRepo.getUpisaneGodineForStudentIndeks(studentIndeks.getId());
+
         ObnovaGodine obnovaGodine = new ObnovaGodine();
         obnovaGodine.setStudentIndeks(studentIndeks);
         obnovaGodine.setDatumObnove(LocalDate.now());
-        obnovaGodine.setGodinaKojuObnavlja(request.getGodinaKojuObnavlja());
+        obnovaGodine.setGodinaKojuObnavlja(upisaneGodine.get(0));
         obnovaGodine.setSkolskaGodina(skolskaGodina);
         obnovaGodine.setNapomena(request.getNapomena());
 

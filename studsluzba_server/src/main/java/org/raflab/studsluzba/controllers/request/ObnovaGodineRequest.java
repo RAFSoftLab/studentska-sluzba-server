@@ -1,20 +1,13 @@
 package org.raflab.studsluzba.controllers.request;
 
 import lombok.Data;
-import org.raflab.studsluzba.model.Predmet;
-
-import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class ObnovaGodineRequest {
 
+    @NotNull
     private Long studentId;
-
-    private Integer godinaKojuObnavlja;
-
-    @ManyToMany
-    private List<Predmet> upisujePredmete;
 
     private String napomena;
 }

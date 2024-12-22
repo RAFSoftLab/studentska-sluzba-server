@@ -11,4 +11,9 @@ public interface UpisGodineRepository extends CrudRepository<UpisGodine, Long> {
 	@Query("select ug from UpisGodine ug where ug.studentIndeks.id = :indeksId")
 	List<UpisGodine> getUpisiForIndeks(Long indeksId);
 
+	@Query("select ug.godinaKojaSeUpisuje from UpisGodine ug " +
+			"where ug.studentIndeks.id = :indeksId " +
+			"order by ug.godinaKojaSeUpisuje desc ")
+	List<Integer> getUpisaneGodineForStudentIndeks(Long indeksId);
+
 }
