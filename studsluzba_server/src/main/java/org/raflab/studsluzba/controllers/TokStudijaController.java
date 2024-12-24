@@ -10,10 +10,7 @@ import org.raflab.studsluzba.repositories.UplataRepository;
 import org.raflab.studsluzba.services.TokStudijaService;
 import org.raflab.studsluzba.utils.Converters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /*
  * funkcije za snimanje i preuzimanje upisa, obnova, uplata
@@ -23,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path="/tok")
+@CrossOrigin
 public class TokStudijaController {
 
 	@Autowired
