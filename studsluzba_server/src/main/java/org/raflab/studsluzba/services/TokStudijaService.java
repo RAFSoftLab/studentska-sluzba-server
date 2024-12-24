@@ -2,10 +2,7 @@ package org.raflab.studsluzba.services;
 
 import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
-import org.raflab.studsluzba.model.ObnovaGodine;
-import org.raflab.studsluzba.model.SkolskaGodina;
-import org.raflab.studsluzba.model.StudentIndeks;
-import org.raflab.studsluzba.model.UpisGodine;
+import org.raflab.studsluzba.model.*;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.UpisGodineRepository;
 import org.raflab.studsluzba.repositories.UplataRepository;
@@ -14,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TokStudijaService {
@@ -28,7 +27,8 @@ public class TokStudijaService {
     StudentIndeksService studentIndeksService;
     @Autowired
     SkolskaGodinaService skolskaGodinaService;
-
+    @Autowired
+    PredmetService predmetService;
 
     public Long addUpis(UpisGodineRequest request) {
         StudentIndeks studentIndeks = studentIndeksService.findByStudentIdAndAktivan(request.getStudentId());
@@ -40,7 +40,7 @@ public class TokStudijaService {
         upisGodine.setStudentIndeks(studentIndeks);
         upisGodine.setDatumUpisa(LocalDate.now());
 
-        if (upisaneGodine.isEmpty()) {  //upis u prvu godinu
+        if (upisaneGodine.isEmpty()) {  // upis u prvu godinu
             upisGodine.setPrenosEspb(0);
             upisGodine.setGodinaKojaSeUpisuje(1);
         } else {
@@ -51,7 +51,13 @@ public class TokStudijaService {
         upisGodine.setSkolskaGodina(skolskaGodina);
         upisGodine.setNapomena(request.getNapomena());
 
-		// TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
+        List<Predmet> predmetiForUpisGodine = predmetService.getPredmetiForUpisGodine(1, studentIndeks.getStudijskiProgram());
+        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(request.getStudentId());
+
+        upisGodine.setPredmeti(Stream.concat(predmetiForUpisGodine.stream(), nepolozeniPredmeti.stream()).collect(Collectors.toList()));
+
+        //TODO - napuniti tabelu slusa predmet
+        // TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
 
         return upisGodineRepo.save(upisGodine).getId();
     }
@@ -69,7 +75,9 @@ public class TokStudijaService {
         obnovaGodine.setSkolskaGodina(skolskaGodina);
         obnovaGodine.setNapomena(request.getNapomena());
 
-        // TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
+        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(request.getStudentId());
+
+        obnovaGodine.setUpisujePredmete(nepolozeniPredmeti);
 
         return obnovaGodineRepo.save(obnovaGodine).getId();
     }

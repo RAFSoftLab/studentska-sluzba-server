@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 
 @Entity
+@Data
 public class Predmet {
 	
 	@Id
@@ -29,69 +31,8 @@ public class Predmet {
 	private Integer fondPredavanja;
 	private Integer fondVezbe;
 	private String izbornaGrupa;
-	
-		
+	private boolean obavezan;
 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getSifra() {
-		return sifra;
-	}
-	public void setSifra(String sifra) {
-		this.sifra = sifra;
-	}
-	public String getNaziv() {
-		return naziv;
-	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
-	public String getOpis() {
-		return opis;
-	}
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-	public Integer getEspb() {
-		return espb;
-	}
-	public void setEspb(Integer espb) {
-		this.espb = espb;
-	}
-	public Integer getSemestar() {
-		return semestar;
-	}
-	public void setSemestar(Integer semestar) {
-		this.semestar = semestar;
-	}
-	public Integer getGodinaStudija() {
-		return godinaStudija;
-	}
-	public void setGodinaStudija(Integer godinaStudija) {
-		this.godinaStudija = godinaStudija;
-	}
-	public StudijskiProgram getStudProgram() {
-		return studProgram;
-	}
-	public void setStudProgram(StudijskiProgram studProgram) {
-		this.studProgram = studProgram;
-	}
-	public Integer getFondPredavanja() {
-		return fondPredavanja;
-	}
-	public void setFondPredavanja(Integer fondPredavanja) {
-		this.fondPredavanja = fondPredavanja;
-	}
-	public Integer getFondVezbe() {
-		return fondVezbe;
-	}
-	public void setFondVezbe(Integer fondVezbe) {
-		this.fondVezbe = fondVezbe;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,17 +56,5 @@ public class Predmet {
 			return false;
 		return true;
 	}
-	public String getIzbornaGrupa() {
-		return izbornaGrupa;
-	}
-	public void setIzbornaGrupa(String izbornaGrupa) {
-		this.izbornaGrupa = izbornaGrupa;
-	}
-	
-	
-	
-	
-	
-	
-	
+
 }
