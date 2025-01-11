@@ -11,7 +11,7 @@ public class SkolskaGodinaService {
     @Autowired
     SkolskaGodinaRepository skolskaGodinaRepository;
 
-    SkolskaGodina getNewSkolskaGodina() {
+    public SkolskaGodina getNewSkolskaGodina() {
         return skolskaGodinaRepository.findTopByOrderByKrajnjaDesc();
     }
 }
