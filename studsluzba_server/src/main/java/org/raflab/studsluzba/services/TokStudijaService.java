@@ -1,6 +1,8 @@
 package org.raflab.studsluzba.services;
 
+import org.raflab.studsluzba.controllers.request.ObnovaGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
+import org.raflab.studsluzba.controllers.request.UpisGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
 import org.raflab.studsluzba.model.*;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
@@ -31,6 +33,35 @@ public class TokStudijaService {
     PredmetService predmetService;
 
     public Long addUpis(UpisGodineRequest request) {
+        UpisGodine upisGodine = new UpisGodine();
+        upisGodine.setStudentIndeks(request.getStudentIndeks());
+        upisGodine.setDatumUpisa(request.getDatumUpisa());
+        upisGodine.setPrenosEspb(request.getPrenosiEspb());
+        upisGodine.setGodinaKojaSeUpisuje(request.getGodinaKojaSeUpisuje());
+        upisGodine.setSkolskaGodina(request.getSkolskaGodina());
+        upisGodine.setNapomena(request.getNapomena());
+        upisGodine.setPredmeti(Stream.concat(request.getPredmetiForUpis().stream(),
+                request.getNepolozeniPredmeti().stream()).collect(Collectors.toList()));
+
+        //TODO - napuniti tabelu slusa predmet
+        // TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
+
+        return upisGodineRepo.save(upisGodine).getId();
+    }
+
+    public Long addObnovaGodine(ObnovaGodineRequest request) {
+        ObnovaGodine obnovaGodine = new ObnovaGodine();
+        obnovaGodine.setStudentIndeks(request.getStudentIndeks());
+        obnovaGodine.setDatumObnove(request.getDatumObnove());
+        obnovaGodine.setGodinaKojuObnavlja(request.getGodinaKojuObnavlja());
+        obnovaGodine.setSkolskaGodina(request.getSkolskaGodina());
+        obnovaGodine.setNapomena(request.getNapomena());
+        obnovaGodine.setUpisujePredmete(request.getNepolozeniPredmeti());
+
+        return obnovaGodineRepo.save(obnovaGodine).getId();
+    }
+
+    public UpisGodine initUpis(UpisGodineInitRequest request) {
         StudentIndeks studentIndeks = studentIndeksService.findByStudentIdAndAktivan(request.getStudentId());
         SkolskaGodina skolskaGodina = skolskaGodinaService.getNewSkolskaGodina();
 
@@ -59,10 +90,10 @@ public class TokStudijaService {
         //TODO - napuniti tabelu slusa predmet
         // TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
 
-        return upisGodineRepo.save(upisGodine).getId();
+        return upisGodine;
     }
 
-    public Long addObnovaGodine(ObnovaGodineRequest request) {
+    public ObnovaGodine initObnovaGodine(ObnovaGodineInitRequest request) {
         StudentIndeks studentIndeks = studentIndeksService.findByStudentIdAndAktivan(request.getStudentId());
         SkolskaGodina skolskaGodina = skolskaGodinaService.getNewSkolskaGodina();
 
@@ -79,6 +110,6 @@ public class TokStudijaService {
 
         obnovaGodine.setUpisujePredmete(nepolozeniPredmeti);
 
-        return obnovaGodineRepo.save(obnovaGodine).getId();
+        return obnovaGodine;
     }
 }
