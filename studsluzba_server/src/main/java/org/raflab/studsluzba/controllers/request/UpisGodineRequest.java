@@ -18,8 +18,7 @@ public class UpisGodineRequest {
     private SkolskaGodina skolskaGodina;
     @NotNull
     private Integer godinaKojaSeUpisuje;
-    private List<Predmet> predmetiForUpis;
-    private List<Predmet> nepolozeniPredmeti;
+    private List<Predmet> predmeti;
     @NotNull
     private LocalDate datumUpisa;
     private Integer prenosiEspb;

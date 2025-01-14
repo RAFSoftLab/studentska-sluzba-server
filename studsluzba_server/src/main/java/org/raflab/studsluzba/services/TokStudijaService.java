@@ -40,8 +40,7 @@ public class TokStudijaService {
         upisGodine.setGodinaKojaSeUpisuje(request.getGodinaKojaSeUpisuje());
         upisGodine.setSkolskaGodina(request.getSkolskaGodina());
         upisGodine.setNapomena(request.getNapomena());
-        upisGodine.setPredmeti(Stream.concat(request.getPredmetiForUpis().stream(),
-                request.getNepolozeniPredmeti().stream()).collect(Collectors.toList()));
+        upisGodine.setPredmeti(request.getPredmeti());
 
         //TODO - napuniti tabelu slusa predmet
         // TODO da li ovde dodati predmete koje slusa? predmete iz godine koju upisuje i predmete koje prenosi?
@@ -56,7 +55,7 @@ public class TokStudijaService {
         obnovaGodine.setGodinaKojuObnavlja(request.getGodinaKojuObnavlja());
         obnovaGodine.setSkolskaGodina(request.getSkolskaGodina());
         obnovaGodine.setNapomena(request.getNapomena());
-        obnovaGodine.setUpisujePredmete(request.getNepolozeniPredmeti());
+        obnovaGodine.setUpisujePredmete(request.getUpisujePredmete());
 
         return obnovaGodineRepo.save(obnovaGodine).getId();
     }
@@ -75,15 +74,15 @@ public class TokStudijaService {
             upisGodine.setPrenosEspb(0);
             upisGodine.setGodinaKojaSeUpisuje(1);
         } else {
-            upisGodine.setPrenosEspb(upisaneGodine.get(0)*60 - studentIndeks.getOstvarenoEspb());
+            upisGodine.setPrenosEspb(upisaneGodine.get(0)*60 - ((studentIndeks.getOstvarenoEspb() == null) ? 0 : studentIndeks.getOstvarenoEspb()));
             upisGodine.setGodinaKojaSeUpisuje(upisaneGodine.get(0) + 1);
         }
 
         upisGodine.setSkolskaGodina(skolskaGodina);
         upisGodine.setNapomena(request.getNapomena());
 
-        List<Predmet> predmetiForUpisGodine = predmetService.getPredmetiForUpisGodine(1, studentIndeks.getStudijskiProgram());
-        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(request.getStudentId());
+        List<Predmet> predmetiForUpisGodine = predmetService.getPredmetiForUpisGodine(upisGodine.getGodinaKojaSeUpisuje(), studentIndeks.getStudijskiProgram());
+        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(studentIndeks.getId());
 
         upisGodine.setPredmeti(Stream.concat(predmetiForUpisGodine.stream(), nepolozeniPredmeti.stream()).collect(Collectors.toList()));
 
@@ -99,6 +98,8 @@ public class TokStudijaService {
 
         List<Integer> upisaneGodine = upisGodineRepo.getUpisaneGodineForStudentIndeks(studentIndeks.getId());
 
+        if (upisaneGodine.size() == 0) return null;
+
         ObnovaGodine obnovaGodine = new ObnovaGodine();
         obnovaGodine.setStudentIndeks(studentIndeks);
         obnovaGodine.setDatumObnove(LocalDate.now());
@@ -106,7 +107,7 @@ public class TokStudijaService {
         obnovaGodine.setSkolskaGodina(skolskaGodina);
         obnovaGodine.setNapomena(request.getNapomena());
 
-        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(request.getStudentId());
+        List<Predmet> nepolozeniPredmeti = predmetService.getNepolozeniPredmeti(studentIndeks.getId());
 
         obnovaGodine.setUpisujePredmete(nepolozeniPredmeti);
 

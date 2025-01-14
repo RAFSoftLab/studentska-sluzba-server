@@ -19,7 +19,7 @@ public class ObnovaGodineRequest {
     @NotNull
     private Integer godinaKojuObnavlja;
     @NotNull
-    private List<Predmet> nepolozeniPredmeti;
+    private List<Predmet> upisujePredmete;
     @NotNull
     private LocalDate datumObnove;
     private String napomena;
