@@ -4,8 +4,8 @@ import org.raflab.studsluzba.controllers.request.ObnovaGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
-import org.raflab.studsluzba.model.ObnovaGodine;
-import org.raflab.studsluzba.model.UpisGodine;
+import org.raflab.studsluzba.controllers.response.ObnovaGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.UpisGodineInitResponse;
 import org.raflab.studsluzba.repositories.UplataRepository;
 import org.raflab.studsluzba.services.TokStudijaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +42,13 @@ public class TokStudijaController {
 	}
 
 	@PostMapping(path="/upis/init")
-	public UpisGodine initUpis(@RequestBody UpisGodineInitRequest request) {
+	public UpisGodineInitResponse initUpis(@RequestBody UpisGodineInitRequest request) {
 
 		return tokStudijaService.initUpis(request);
 	}
 
 	@PostMapping(path="/obnova/init")
-	public ObnovaGodine initObnova(@RequestBody ObnovaGodineInitRequest request) {
+	public ObnovaGodineInitResponse initObnova(@RequestBody ObnovaGodineInitRequest request) {
 
 		return tokStudijaService.initObnovaGodine(request);
 

@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,6 +7,8 @@ import org.raflab.studsluzba.controllers.request.ObnovaGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
+import org.raflab.studsluzba.controllers.response.ObnovaGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.UpisGodineInitResponse;
 import org.raflab.studsluzba.model.*;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.UpisGodineRepository;
@@ -60,8 +61,7 @@ class TokStudijaServiceTest {
         request.setGodinaKojaSeUpisuje(2);
         request.setSkolskaGodina(new SkolskaGodina());
         request.setNapomena("Test upis");
-        request.setPredmetiForUpis(Collections.singletonList(new Predmet()));
-        request.setNepolozeniPredmeti(Collections.singletonList(new Predmet()));
+        request.setPredmeti(Collections.singletonList(new Predmet()));
 
         UpisGodine savedUpisGodine = new UpisGodine();
         savedUpisGodine.setId(100L);
@@ -85,7 +85,7 @@ class TokStudijaServiceTest {
         request.setGodinaKojuObnavlja(2);
         request.setSkolskaGodina(new SkolskaGodina());
         request.setNapomena("Test obnova");
-        request.setNepolozeniPredmeti(Collections.singletonList(new Predmet()));
+        request.setUpisujePredmete(Collections.singletonList(new Predmet()));
 
         ObnovaGodine savedObnovaGodine = new ObnovaGodine();
         savedObnovaGodine.setId(200L);
@@ -121,11 +121,11 @@ class TokStudijaServiceTest {
         List<Predmet> predmetiForUpisGodine = Arrays.asList(new Predmet(), new Predmet());
         List<Predmet> nepolozeniPredmeti = Collections.singletonList(new Predmet());
 
-        when(predmetService.getPredmetiForUpisGodine(1, studentIndeks.getStudijskiProgram())).thenReturn(predmetiForUpisGodine);
+        when(predmetService.getPredmetiForUpisGodine(2, studentIndeks.getStudijskiProgram())).thenReturn(predmetiForUpisGodine);
         when(predmetService.getNepolozeniPredmeti(1L)).thenReturn(nepolozeniPredmeti);
 
         // Act
-        UpisGodine result = tokStudijaService.initUpis(request);
+        UpisGodineInitResponse result = tokStudijaService.initUpis(request);
 
         // Assert
         assertEquals(2, result.getGodinaKojaSeUpisuje());
@@ -153,7 +153,7 @@ class TokStudijaServiceTest {
         when(predmetService.getNepolozeniPredmeti(1L)).thenReturn(nepolozeniPredmeti);
 
         // Act
-        ObnovaGodine result = tokStudijaService.initObnovaGodine(request);
+        ObnovaGodineInitResponse result = tokStudijaService.initObnovaGodine(request);
 
         // Assert
         assertEquals(2, result.getGodinaKojuObnavlja());

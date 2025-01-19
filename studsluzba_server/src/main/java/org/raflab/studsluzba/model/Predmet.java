@@ -2,18 +2,17 @@ package org.raflab.studsluzba.model;
 
 import javax.persistence.Entity;
 
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = {"studProgram"})
 public class Predmet {
 	
 	@Id

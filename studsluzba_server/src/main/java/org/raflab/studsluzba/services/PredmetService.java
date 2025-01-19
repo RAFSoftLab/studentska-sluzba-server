@@ -18,8 +18,8 @@ public class PredmetService {
         return predmetRepository.getPredmetsByGodinaStudijaAndStudProgramAndObavezan(godinaStudija, studProgram, true);
     }
 
-    public List<Predmet> getNepolozeniPredmeti(Long studentId) {
-        return predmetRepository.getNepolozeniPredmeti(studentId);
+    public List<Predmet> getNepolozeniPredmeti(Long studentIndeksId) {
+        return predmetRepository.getNepolozeniPredmeti(studentIndeksId);
     }
 
 
