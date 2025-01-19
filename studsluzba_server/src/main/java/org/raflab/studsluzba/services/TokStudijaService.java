@@ -5,11 +5,14 @@ import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
 import org.raflab.studsluzba.controllers.response.ObnovaGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.ObnovaGodineResponse;
 import org.raflab.studsluzba.controllers.response.UpisGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.UpisGodineResponse;
 import org.raflab.studsluzba.model.*;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.UpisGodineRepository;
 import org.raflab.studsluzba.repositories.UplataRepository;
+import org.raflab.studsluzba.utils.Converters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,5 +114,17 @@ public class TokStudijaService {
         obnovaGodineInitResponse.setUpisujePredmete(nepolozeniPredmeti);
 
         return obnovaGodineInitResponse;
+    }
+
+    public List<UpisGodineResponse> getUpisGodineByStudentIndeks(Long idStudentIndeks) {
+        List<UpisGodine> upisiForIndeks = upisGodineRepo.getUpisiForIndeks(idStudentIndeks);
+
+        return upisiForIndeks.stream().map(Converters::toUpisGodineResponse).collect(Collectors.toList());
+    }
+
+    public List<ObnovaGodineResponse> getObnovaGodineByStudentIndeks(Long idStudentIndeks) {
+        List<ObnovaGodine> obnoveForIndeks = obnovaGodineRepo.getObnoveForIndeks(idStudentIndeks);
+
+        return obnoveForIndeks.stream().map(Converters::toObnovaGodineResponse).collect(Collectors.toList());
     }
 }

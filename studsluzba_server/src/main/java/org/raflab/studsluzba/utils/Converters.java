@@ -3,6 +3,8 @@ package org.raflab.studsluzba.utils;
 import org.raflab.studsluzba.controllers.request.*;
 import org.raflab.studsluzba.controllers.response.IspitniRokResponse;
 import org.raflab.studsluzba.controllers.response.NastavnikResponse;
+import org.raflab.studsluzba.controllers.response.ObnovaGodineResponse;
+import org.raflab.studsluzba.controllers.response.UpisGodineResponse;
 import org.raflab.studsluzba.model.*;
 
 import java.util.ArrayList;
@@ -117,5 +119,27 @@ public class Converters {
         studentIndeks.setAktivan(studentIndeksRequest.isAktivan());
         studentIndeks.setVaziOd(studentIndeksRequest.getVaziOd());
         return studentIndeks;
+    }
+
+    public static ObnovaGodineResponse toObnovaGodineResponse(ObnovaGodine obnovaGodine) {
+        ObnovaGodineResponse response = new ObnovaGodineResponse();
+        response.setId(obnovaGodine.getId());
+        response.setDatumObnove(obnovaGodine.getDatumObnove());
+        response.setUpisujePredmete(obnovaGodine.getUpisujePredmete());
+        response.setNapomena(obnovaGodine.getNapomena());
+        response.setSkolskaGodina(obnovaGodine.getSkolskaGodina());
+        return response;
+    }
+
+    public static UpisGodineResponse toUpisGodineResponse(UpisGodine upisGodine) {
+        UpisGodineResponse response = new UpisGodineResponse();
+        response.setId(upisGodine.getId());
+        response.setDatumUpisa(upisGodine.getDatumUpisa());
+        response.setPrenosiEspb(upisGodine.getPrenosEspb());
+        response.setGodinaKojaSeUpisuje(upisGodine.getGodinaKojaSeUpisuje());
+        response.setPredmeti(upisGodine.getPredmeti());
+        response.setSkolskaGodina(upisGodine.getSkolskaGodina());
+        response.setNapomena(upisGodine.getNapomena());
+        return response;
     }
 }
