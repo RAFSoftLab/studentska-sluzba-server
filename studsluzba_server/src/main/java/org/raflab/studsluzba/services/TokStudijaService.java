@@ -38,6 +38,8 @@ public class TokStudijaService {
     PredmetService predmetService;
     @Autowired
     UpisGodinePredmetiService upisGodinePredmetiService;
+    @Autowired
+    ObnovaGodineUpisujePredmeteService obnovaGodineUpisujePredmeteService;
 
     public Long addUpis(UpisGodineRequest request) {
         UpisGodine upisGodine = new UpisGodine();
@@ -64,9 +66,11 @@ public class TokStudijaService {
         obnovaGodine.setNapomena(request.getNapomena());
         obnovaGodine.setUpisujePredmete(request.getUpisujePredmete());
 
+        Long id = obnovaGodineRepo.save(obnovaGodine).getId();
 
+        obnovaGodineUpisujePredmeteService.savePredmeti(id, request.getUpisujePredmete());
 
-        return obnovaGodineRepo.save(obnovaGodine).getId();
+        return id;
     }
 
     public UpisGodineInitResponse initUpis(UpisGodineInitRequest request) {
