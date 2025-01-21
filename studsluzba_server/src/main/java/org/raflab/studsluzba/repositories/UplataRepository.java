@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UplataRepository extends CrudRepository<Uplata, Long> {
 	
 	@Query("select up from Uplata up where up.studentIndeks.id = :indeksId")
-	List<Uplata>  getUplateForIndeks(Long indeksId);
+	List<Uplata> getUplateForIndeks(Long indeksId);
  	
 }

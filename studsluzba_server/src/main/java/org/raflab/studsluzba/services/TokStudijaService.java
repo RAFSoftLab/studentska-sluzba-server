@@ -36,6 +36,8 @@ public class TokStudijaService {
     SkolskaGodinaService skolskaGodinaService;
     @Autowired
     PredmetService predmetService;
+    @Autowired
+    UpisGodinePredmetiService upisGodinePredmetiService;
 
     public Long addUpis(UpisGodineRequest request) {
         UpisGodine upisGodine = new UpisGodine();
@@ -47,7 +49,10 @@ public class TokStudijaService {
         upisGodine.setNapomena(request.getNapomena());
         upisGodine.setPredmeti(request.getPredmeti());
 
-        return upisGodineRepo.save(upisGodine).getId();
+        Long id = upisGodineRepo.save(upisGodine).getId();
+
+        upisGodinePredmetiService.savePredmeti(id, request.getPredmeti());
+        return id;
     }
 
     public Long addObnovaGodine(ObnovaGodineRequest request) {
@@ -58,6 +63,8 @@ public class TokStudijaService {
         obnovaGodine.setSkolskaGodina(request.getSkolskaGodina());
         obnovaGodine.setNapomena(request.getNapomena());
         obnovaGodine.setUpisujePredmete(request.getUpisujePredmete());
+
+
 
         return obnovaGodineRepo.save(obnovaGodine).getId();
     }
