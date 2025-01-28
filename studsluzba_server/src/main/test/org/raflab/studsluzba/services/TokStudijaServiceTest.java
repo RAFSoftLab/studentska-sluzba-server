@@ -1,3 +1,5 @@
+package org.raflab.studsluzba.services;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,15 +10,13 @@ import org.raflab.studsluzba.controllers.request.ObnovaGodineRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineInitRequest;
 import org.raflab.studsluzba.controllers.request.UpisGodineRequest;
 import org.raflab.studsluzba.controllers.response.ObnovaGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.ObnovaGodineResponse;
 import org.raflab.studsluzba.controllers.response.UpisGodineInitResponse;
+import org.raflab.studsluzba.controllers.response.UpisGodineResponse;
 import org.raflab.studsluzba.model.*;
 import org.raflab.studsluzba.repositories.ObnovaGodineRepository;
 import org.raflab.studsluzba.repositories.UpisGodineRepository;
 import org.raflab.studsluzba.repositories.UplataRepository;
-import org.raflab.studsluzba.services.PredmetService;
-import org.raflab.studsluzba.services.SkolskaGodinaService;
-import org.raflab.studsluzba.services.StudentIndeksService;
-import org.raflab.studsluzba.services.TokStudijaService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -48,6 +48,12 @@ class TokStudijaServiceTest {
     @Mock
     private PredmetService predmetService;
 
+    @Mock
+    private UpisGodinePredmetiService upisGodinePredmetiService;
+
+    @Mock
+    private ObnovaGodineUpisujePredmeteService obnovaGodineUpisujePredmeteService;
+
     @InjectMocks
     private TokStudijaService tokStudijaService;
 
@@ -74,6 +80,7 @@ class TokStudijaServiceTest {
         // Assert
         assertEquals(100L, result);
         verify(upisGodineRepo, times(1)).save(any(UpisGodine.class));
+        verify(upisGodinePredmetiService, times(1)).savePredmeti(100L, request.getPredmeti());
     }
 
     @Test
@@ -98,11 +105,11 @@ class TokStudijaServiceTest {
         // Assert
         assertEquals(200L, result);
         verify(obnovaGodineRepo, times(1)).save(any(ObnovaGodine.class));
+        verify(obnovaGodineUpisujePredmeteService, times(1)).savePredmeti(200L, request.getUpisujePredmete());
     }
 
     @Test
     void testInitUpis() {
-        // Arrange
         UpisGodineInitRequest request = new UpisGodineInitRequest();
         request.setStudentId(1L);
         request.setNapomena("Test inicijalizacija upisa");
@@ -127,10 +134,10 @@ class TokStudijaServiceTest {
         // Act
         UpisGodineInitResponse result = tokStudijaService.initUpis(request);
 
-        // Assert
         assertEquals(2, result.getGodinaKojaSeUpisuje());
         assertEquals("Test inicijalizacija upisa", result.getNapomena());
         assertEquals(3, result.getPredmeti().size());
+        assertEquals(30, result.getPrenosiEspb());
     }
 
     @Test
@@ -159,5 +166,101 @@ class TokStudijaServiceTest {
         assertEquals(2, result.getGodinaKojuObnavlja());
         assertEquals("Test inicijalizacija obnove", result.getNapomena());
         assertEquals(1, result.getUpisujePredmete().size());
+    }
+
+    @Test
+    void testGetUpisGodineByStudentIndeks() {
+        // Arrange
+        Long studentIndeksId = 1L;
+
+        UpisGodine upis1 = new UpisGodine();
+        upis1.setId(101L);
+        UpisGodine upis2 = new UpisGodine();
+        upis2.setId(102L);
+
+        when(upisGodineRepo.getUpisiForIndeks(studentIndeksId))
+                .thenReturn(Arrays.asList(upis1, upis2));
+
+        // Act
+        List<UpisGodineResponse> result = tokStudijaService.getUpisGodineByStudentIndeks(studentIndeksId);
+
+        // Assert
+        assertEquals(2, result.size());
+        verify(upisGodineRepo, times(1)).getUpisiForIndeks(studentIndeksId);
+    }
+
+    @Test
+    void testGetObnovaGodineByStudentIndeks() {
+        // Arrange
+        Long studentIndeksId = 1L;
+
+        ObnovaGodine obnova1 = new ObnovaGodine();
+        obnova1.setId(201L);
+        ObnovaGodine obnova2 = new ObnovaGodine();
+        obnova2.setId(202L);
+
+        when(obnovaGodineRepo.getObnoveForIndeks(studentIndeksId))
+                .thenReturn(Arrays.asList(obnova1, obnova2));
+
+        // Act
+        List<ObnovaGodineResponse> result = tokStudijaService.getObnovaGodineByStudentIndeks(studentIndeksId);
+
+        // Assert
+        assertEquals(2, result.size());
+        verify(obnovaGodineRepo, times(1)).getObnoveForIndeks(studentIndeksId);
+    }
+
+    @Test
+    void testInitUpisWhenNoUpisaneGodine() {
+        // Arrange
+        UpisGodineInitRequest request = new UpisGodineInitRequest();
+        request.setStudentId(1L);
+        request.setNapomena("Test inicijalizacija upisa");
+
+        StudentIndeks studentIndeks = new StudentIndeks();
+        studentIndeks.setId(1L);
+        studentIndeks.setOstvarenoEspb(0);
+        studentIndeks.setStudijskiProgram(new StudijskiProgram());
+
+        SkolskaGodina skolskaGodina = new SkolskaGodina();
+
+        when(studentIndeksService.findByStudentIdAndAktivan(1L)).thenReturn(studentIndeks);
+        when(skolskaGodinaService.getNewSkolskaGodina()).thenReturn(skolskaGodina);
+        when(upisGodineRepo.getUpisaneGodineForStudentIndeks(1L)).thenReturn(Collections.emptyList());
+
+        List<Predmet> predmetiForUpisGodine = Collections.singletonList(new Predmet());
+
+        when(predmetService.getPredmetiForUpisGodine(1, studentIndeks.getStudijskiProgram()))
+                .thenReturn(predmetiForUpisGodine);
+
+        // Act
+        UpisGodineInitResponse result = tokStudijaService.initUpis(request);
+
+        // Assert
+        assertEquals(1, result.getGodinaKojaSeUpisuje());
+        assertEquals(0, result.getPrenosiEspb());
+        assertEquals("Test inicijalizacija upisa", result.getNapomena());
+        assertEquals(1, result.getPredmeti().size());
+    }
+
+    @Test
+    void testInitObnovaGodineWhenNoUpisaneGodine() {
+        // Arrange
+        ObnovaGodineInitRequest request = new ObnovaGodineInitRequest();
+        request.setStudentId(1L);
+        request.setNapomena("Test inicijalizacija obnove");
+
+        StudentIndeks studentIndeks = new StudentIndeks();
+        studentIndeks.setId(1L);
+
+        when(studentIndeksService.findByStudentIdAndAktivan(1L)).thenReturn(studentIndeks);
+        when(upisGodineRepo.getUpisaneGodineForStudentIndeks(1L)).thenReturn(Collections.emptyList());
+
+        // Act
+        ObnovaGodineInitResponse result = tokStudijaService.initObnovaGodine(request);
+
+        // Assert
+        assertEquals(null, result);
+        verify(upisGodineRepo, times(1)).getUpisaneGodineForStudentIndeks(1L);
     }
 }
