@@ -48,12 +48,6 @@ class TokStudijaServiceTest {
     @Mock
     private PredmetService predmetService;
 
-    @Mock
-    private UpisGodinePredmetiService upisGodinePredmetiService;
-
-    @Mock
-    private ObnovaGodineUpisujePredmeteService obnovaGodineUpisujePredmeteService;
-
     @InjectMocks
     private TokStudijaService tokStudijaService;
 
@@ -80,7 +74,6 @@ class TokStudijaServiceTest {
         // Assert
         assertEquals(100L, result);
         verify(upisGodineRepo, times(1)).save(any(UpisGodine.class));
-        verify(upisGodinePredmetiService, times(1)).savePredmeti(100L, request.getPredmeti());
     }
 
     @Test
@@ -105,7 +98,6 @@ class TokStudijaServiceTest {
         // Assert
         assertEquals(200L, result);
         verify(obnovaGodineRepo, times(1)).save(any(ObnovaGodine.class));
-        verify(obnovaGodineUpisujePredmeteService, times(1)).savePredmeti(200L, request.getUpisujePredmete());
     }
 
     @Test

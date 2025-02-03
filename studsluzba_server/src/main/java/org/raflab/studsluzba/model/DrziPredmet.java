@@ -6,9 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 @Entity
+@Data
 public class DrziPredmet {
 	
 	@Id
@@ -23,41 +24,4 @@ public class DrziPredmet {
 	
 	@ManyToOne
 	private Predmet predmet;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public SkolskaGodina getSkolskaGodina() {
-		return skolskaGodina;
-	}
-
-	public void setSkolskaGodina(SkolskaGodina skolskaGodina) {
-		this.skolskaGodina = skolskaGodina;
-	}
-
-	public Nastavnik getNastavnik() {
-		return nastavnik;
-	}
-
-	public void setNastavnik(Nastavnik nastavnik) {
-		this.nastavnik = nastavnik;
-	}
-
-	public Predmet getPredmet() {
-		return predmet;
-	}
-
-	public void setPredmet(Predmet predmet) {
-		this.predmet = predmet;
-	}
-	
-	
-	
-	
-
 }
