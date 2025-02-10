@@ -1,22 +1,15 @@
 package org.raflab.studsluzba.controllers;
 
-import java.util.List;
-
 import org.raflab.studsluzba.model.SkolskaGodina;
 import org.raflab.studsluzba.repositories.SkolskaGodinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /*
  * Kontroler preko koga se povlace razne admin stvari, na primer aktivna skolska godina
  * 
  */
-
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/admin")
 public class AdminController {

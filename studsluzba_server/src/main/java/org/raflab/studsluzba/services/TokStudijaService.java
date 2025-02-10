@@ -41,7 +41,7 @@ public class TokStudijaService {
         UpisGodine upisGodine = new UpisGodine();
         upisGodine.setStudentIndeks(request.getStudentIndeks());
         upisGodine.setDatumUpisa(request.getDatumUpisa());
-        upisGodine.setPrenosEspb(request.getPrenosiEspb());
+        upisGodine.setPrenosEspb(request.getPrenosEspb());
         upisGodine.setGodinaKojaSeUpisuje(request.getGodinaKojaSeUpisuje());
         upisGodine.setSkolskaGodina(request.getSkolskaGodina());
         upisGodine.setNapomena(request.getNapomena());

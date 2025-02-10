@@ -21,6 +21,6 @@ public class UpisGodineRequest {
     private List<Predmet> predmeti;
     @NotNull
     private LocalDate datumUpisa;
-    private Integer prenosiEspb;
+    private Integer prenosEspb;
     private String napomena;
 }
