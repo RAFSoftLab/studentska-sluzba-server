@@ -15,17 +15,17 @@ public interface DrziPredmetRepository extends CrudRepository<DrziPredmet, Long>
 	List<DrziPredmet> getDrziPredmetForSkolskaGodina(Long skolskaGodinaId);
 	
 	
-	@Query("select dp from DrziPredmet dp where dp.skolskaGodina.aktivna = 1")
+	@Query("select dp from DrziPredmet dp where dp.skolskaGodina.aktivna = true")
 	List<DrziPredmet> getDrziPredmetAktivnaSkolskaGodina();
 	
 	/*
 	 * vraca predmete koje nastavnik drzi u skolskoj godini, prosledjuje se id nastavnika
 	 */
 	
-	@Query("select dp.predmet from DrziPredmet dp where dp.skolskaGodina.aktivna = 1 and dp.nastavnik.id = :idNastavnika")
+	@Query("select dp.predmet from DrziPredmet dp where dp.skolskaGodina.aktivna = true and dp.nastavnik.id = :idNastavnika")
 	List<Predmet> getPredmetiZaNastavnikaUAktivnojSkolskojGodini(Long idNastavnika);
 	
-	@Query("select dp from DrziPredmet dp where dp.skolskaGodina.aktivna=1 "
+	@Query("select dp from DrziPredmet dp where dp.skolskaGodina.aktivna=true "
 			+ "and dp.nastavnik.id = :idNastavnik "
 			+ "and dp.predmet.id = :idPredmet")
 	DrziPredmet getDrziPredmetNastavnikPredmetAktivna(Long idPredmet, Long idNastavnik);
