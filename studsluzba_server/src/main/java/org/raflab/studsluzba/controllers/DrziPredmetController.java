@@ -2,6 +2,7 @@ package org.raflab.studsluzba.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import org.raflab.studsluzba.controllers.request.DrziPredmetRequest;
 import org.raflab.studsluzba.controllers.response.DrziPredmetInitResponse;
 import org.raflab.studsluzba.model.dtos.DrziPredmetDTO;
 import org.raflab.studsluzba.services.DrziPredmetService;
@@ -32,5 +33,10 @@ public class DrziPredmetController {
         } catch (IOException e) {
             throw new RuntimeException("Error while reading the file", e);
         }
+    }
+
+    @PostMapping(path = "/add")
+    public void saveDrziPredmet(@RequestBody DrziPredmetRequest request) {
+        drziPredmetService.saveDrziPredmet(request);
     }
 }

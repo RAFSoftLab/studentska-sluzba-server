@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.raflab.studsluzba.model.Predmet;
 import org.raflab.studsluzba.model.StudijskiProgram;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PredmetRepository extends CrudRepository<Predmet, Long> {
+public interface PredmetRepository extends JpaRepository<Predmet, Long> {
 	
 	
 	// za proslednjenog studenta vraca predmete koje je slusao, a nije polozio
@@ -24,4 +25,6 @@ public interface PredmetRepository extends CrudRepository<Predmet, Long> {
 	List<Predmet> getPredmetsByGodinaStudijaAndStudProgramAndObavezan(
 			Integer godinaStudija, StudijskiProgram studProgram, boolean obavezan);
 
+	List<Predmet> findByIdIn(List<Long> ids);
+	List<Predmet> findByNazivIn(List<String> nazivi);
 }
