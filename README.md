@@ -2,7 +2,7 @@
 Studentska služba - backend
 
 Klijentska strana: https://github.com/RAFSoftLab/studentska-sluzba-desktopclient
-Urađeno
+Urađeno:
 
 - osnovna maven konfiguracija
 - implementacija modela podataka - POJO enity klase korišćenjem lombok biblioteke
