@@ -86,3 +86,25 @@ spring.jpa.properties.hibernate.format_sql=true
 3.Pokrenite aplikaciju:
 - Otvorite klasu sa @SpringBootApplication anotacijom.
 - Kliknite na ikonu Run ili koristite prečicu Shift + F10.
+
+
+## 🚀 Kako pokrenuti aplikaciju koriscenjem Docker-a
+
+1. Build-uj Spring Boot aplikaciju
+```
+mvn clean package
+```
+2. Pokreni aplikaciju preko Docker Compose-a
+```
+docker-compose up --build
+```
+
+Aplikacija je dostupna na:
+
+```
+http://localhost:8080
+```
+Mozes je testirati preko:
+
+http://localhost:8080/student/all
+
