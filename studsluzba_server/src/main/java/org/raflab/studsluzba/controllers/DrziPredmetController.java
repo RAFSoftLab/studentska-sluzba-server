@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/drzi-predmet")
+@RequestMapping(path = "/api/admin/drzi-predmet")
 @AllArgsConstructor
 public class DrziPredmetController {
 

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/predispitne")
+@RequestMapping(path = "/api/predispitne")
 public class PredispitneController {
 	
 	@Autowired

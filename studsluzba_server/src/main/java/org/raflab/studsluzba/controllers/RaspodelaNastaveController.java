@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/raspodelanastave")
+@RequestMapping(path = "/api/professor/raspodelanastave")
 public class RaspodelaNastaveController {
 	
 	@Autowired

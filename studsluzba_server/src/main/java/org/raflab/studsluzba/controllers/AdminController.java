@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/admin")
+@RequestMapping(path = "/api/admin")
 public class AdminController {
 	
 	@Autowired
@@ -19,8 +19,7 @@ public class AdminController {
 	
 	@GetMapping(path = "/skolskagodina/aktivna")
 	public SkolskaGodina getAktivnaSkolskaGodina() {
-		return skolskaGodinaRepo.getAktivnaSkolskaGodina();		
-		
+		return skolskaGodinaRepo.getAktivnaSkolskaGodina();
 	}
 	
 	@GetMapping(path = "/skolskagodina/all")

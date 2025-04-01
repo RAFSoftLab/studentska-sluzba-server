@@ -42,7 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path="/student")
+@RequestMapping(path="/api/student")
 public class StudentController {
 
 	@Autowired

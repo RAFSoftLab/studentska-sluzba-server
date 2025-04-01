@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/ispitni-rok")
+@RequestMapping(path = "/api/ispitni-rok")
 public class IspitniRokController {
 
     @Autowired

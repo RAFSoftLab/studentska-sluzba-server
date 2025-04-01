@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/predmet")
+@RequestMapping(path = "/api/predmet")
 public class PredmetController {
 	
 	@Autowired

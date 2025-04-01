@@ -22,7 +22,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(path="/tok")
+@RequestMapping(path="/api/admin/tok")
 @CrossOrigin
 public class TokStudijaController {
 

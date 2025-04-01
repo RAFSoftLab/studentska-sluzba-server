@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/ispiti")
+@RequestMapping(path = "/api/ispiti")
 public class IspitiController {
 
 		@Autowired

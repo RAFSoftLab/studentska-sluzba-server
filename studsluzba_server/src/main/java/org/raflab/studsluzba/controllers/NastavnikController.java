@@ -24,7 +24,7 @@ import javax.validation.Valid;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/nastavnik")
+@RequestMapping(path = "/api/nastavnik")
 public class NastavnikController {
 
 	@Autowired

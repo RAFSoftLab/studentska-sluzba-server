@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path="/studprogram")
+@RequestMapping(path="/api/studprogram")
 public class StudijskiProgramiController {
 	
 	@Autowired
