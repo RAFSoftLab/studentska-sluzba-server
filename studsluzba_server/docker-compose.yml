@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8
-    container_name: mysql
+    container_name: mysql_temp
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -24,7 +24,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/studsluzba?serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/studsluzba?serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: matija
       SPRING_DATASOURCE_PASSWORD: Test123
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
