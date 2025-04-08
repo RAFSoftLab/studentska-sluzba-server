@@ -5,8 +5,8 @@ import org.raflab.studsluzba.model.Predmet;
 import org.raflab.studsluzba.model.SkolskaGodina;
 import org.raflab.studsluzba.model.StudentIndeks;
 
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.List;
 

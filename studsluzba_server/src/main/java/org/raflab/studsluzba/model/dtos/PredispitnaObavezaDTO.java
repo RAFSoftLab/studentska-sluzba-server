@@ -1,6 +1,6 @@
 package org.raflab.studsluzba.model.dtos;
 
-import javax.persistence.ManyToOne;
+import jakarta.persistence.ManyToOne;
 
 import org.raflab.studsluzba.model.DrziPredmet;
 import org.raflab.studsluzba.model.PredispitnaObaveza;

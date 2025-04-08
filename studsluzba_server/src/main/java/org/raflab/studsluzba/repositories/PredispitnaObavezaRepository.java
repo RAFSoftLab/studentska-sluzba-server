@@ -10,7 +10,7 @@ public interface PredispitnaObavezaRepository extends CrudRepository<Predispitna
 	
 	@Query("select pi from PredispitnaObaveza pi where pi.drziPredmet.predmet.id=:idPredmet "
 			+ "and pi.drziPredmet.nastavnik.id=:idNastavnik "
-			+ "and pi.drziPredmet.skolskaGodina.aktivna = 1")
+			+ "and pi.drziPredmet.skolskaGodina.aktivna = true")
 	List<PredispitnaObaveza> getPredispitneForNastavnikPredmetAktivnaGodina(Long idNastavnik, Long idPredmet);
 	
 	

@@ -2,19 +2,21 @@ package org.raflab.studsluzba.controllers.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity(prePostEnabled = true) // nova anotacija umesto @EnableGlobalMethodSecurity
+public class SecurityConfig {
 
     private final AppUserProperties appUserProperties;
 
@@ -22,21 +24,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.appUserProperties = appUserProperties;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/admin/**").hasRole("SUPER_ADMIN")
-                .antMatchers("/api/professor/**").hasAnyRole("SUPER_ADMIN", "PROFESOR")
-                .antMatchers("/api/assistant/**").hasAnyRole("SUPER_ADMIN", "PROFESOR", "SARADNIK")
-                .antMatchers("/api/student/**").hasAnyRole("SUPER_ADMIN", "PROFESOR", "SARADNIK", "STUDENT")
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/admin/**").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/api/professor/**").hasAnyRole("SUPER_ADMIN", "PROFESOR")
+                        .requestMatchers("/api/assistant/**").hasAnyRole("SUPER_ADMIN", "PROFESOR", "SARADNIK")
+                        .requestMatchers("/api/student/**").hasAnyRole("SUPER_ADMIN", "PROFESOR", "SARADNIK", "STUDENT")
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults());
+
+        return http.build();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 
         for (AppUserProperties.InMemoryUser user : appUserProperties.getUsers()) {
@@ -47,7 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             manager.createUser(userDetails);
         }
 
-        auth.userDetailsService(manager).passwordEncoder(passwordEncoder());
+        return manager;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
     @Bean

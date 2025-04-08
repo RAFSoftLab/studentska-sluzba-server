@@ -9,17 +9,17 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SlusaPredmetRepository extends CrudRepository<SlusaPredmet, Long> {
 	
-	@Query("select sp from SlusaPredmet sp where sp.studentIndeks.id = :indeksId and sp.drziPredmet.skolskaGodina.aktivna = 1")
+	@Query("select sp from SlusaPredmet sp where sp.studentIndeks.id = :indeksId and sp.drziPredmet.skolskaGodina.aktivna = true")
 	List<SlusaPredmet> getSlusaPredmetForIndeksAktivnaGodina(Long indeksId);
 	
 	
 	@Query("select sp.studentIndeks from SlusaPredmet sp where sp.drziPredmet.predmet.id = :idPredmeta "
 			+ "and sp.drziPredmet.nastavnik.id = :idNastavnika  "
-			+ "and sp.drziPredmet.skolskaGodina.aktivna = 1")
+			+ "and sp.drziPredmet.skolskaGodina.aktivna = true")
 	List<StudentIndeks> getStudentiSlusaPredmetAktivnaGodina(Long idPredmeta, Long idNastavnika);
 	
 	
-	@Query("select sp.studentIndeks from SlusaPredmet sp where sp.drziPredmet.id = :idDrziPredmet and sp.drziPredmet.skolskaGodina.aktivna = 1")		
+	@Query("select sp.studentIndeks from SlusaPredmet sp where sp.drziPredmet.id = :idDrziPredmet and sp.drziPredmet.skolskaGodina.aktivna = true")
 	List<StudentIndeks> getStudentiSlusaPredmetZaDrziPredmet(Long idDrziPredmet);
 	
 	
@@ -28,7 +28,7 @@ public interface SlusaPredmetRepository extends CrudRepository<SlusaPredmet, Lon
 	 */
 	@Query("select si from StudentIndeks si where not exists "
 			+ "(select sp from SlusaPredmet sp where sp.studentIndeks=si and sp.drziPredmet.id = :idDrziPredmet "
-			+ "and sp.drziPredmet.skolskaGodina.aktivna = 1) ")
+			+ "and sp.drziPredmet.skolskaGodina.aktivna = true) ")
 	List<StudentIndeks> getStudentiNeSlusajuDrziPredmet(Long idDrziPredmet);
 	
 

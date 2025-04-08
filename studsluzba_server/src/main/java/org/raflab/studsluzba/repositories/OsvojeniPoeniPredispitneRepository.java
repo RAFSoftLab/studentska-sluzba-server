@@ -11,13 +11,13 @@ public interface OsvojeniPoeniPredispitneRepository extends CrudRepository<Osvoj
 	
 	
 	@Query("select op from OsvojeniPoeniPredispitne op where op.studentIndeks.id = :indeksId "
-			+ "and op.predispitnaObaveza.drziPredmet.skolskaGodina.aktivna = 1")
+			+ "and op.predispitnaObaveza.drziPredmet.skolskaGodina.aktivna = true")
 	List<OsvojeniPoeniPredispitne> getPoeniPredispitneZaIndeksAktivnu(Long indeksId);
 	
 	@Query("select op from OsvojeniPoeniPredispitne op where op. predispitnaObaveza.id = :predispitneId")
 	List<OsvojeniPoeniPredispitne> getOsvojeniPoeniZaPredispitne(Long predispitneId); 
 	
-	@Query("select op from OsvojeniPoeniPredispitne op where op. predispitnaObaveza.drziPredmet.skolskaGodina.aktivna=1 "
+	@Query("select op from OsvojeniPoeniPredispitne op where op. predispitnaObaveza.drziPredmet.skolskaGodina.aktivna=true "
 			+ "and predispitnaObaveza.drziPredmet.nastavnik.id = :nastavnikId and predispitnaObaveza.drziPredmet.predmet.id = :predmetId")
 	List<OsvojeniPoeniPredispitne> getOsvojeniPoeniZaNastavnikPredmetAktivna(Long nastavnikId, Long predmetId); 
 	

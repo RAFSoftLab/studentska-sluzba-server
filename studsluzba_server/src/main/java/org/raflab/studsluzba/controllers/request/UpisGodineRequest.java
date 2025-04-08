@@ -5,7 +5,7 @@ import org.raflab.studsluzba.model.Predmet;
 import org.raflab.studsluzba.model.SkolskaGodina;
 import org.raflab.studsluzba.model.StudentIndeks;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 

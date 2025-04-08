@@ -15,7 +15,7 @@ public interface IspitRepository extends CrudRepository<Ispit, Long> {
 	
 	
 	@Query("select i from Ispit i where i.ispitniRok.id = :idIspitniRok and "
-			+ "i.drziPredmet in (select sp.drziPredmet from SlusaPredmet sp where sp.drziPredmet.skolskaGodina.aktivna=1 and sp.studentIndeks.id = :idStudentIndeks) and "
+			+ "i.drziPredmet in (select sp.drziPredmet from SlusaPredmet sp where sp.drziPredmet.skolskaGodina.aktivna=true and sp.studentIndeks.id = :idStudentIndeks) and "
 			+ "i.drziPredmet.predmet not in (select pp.predmet from PolozenPredmet pp where pp.studentIndeks.id = :idStudentIndeks)" )
 	List<Ispit> getMoguciIspitiZaIndeksIRok(Long idStudentIndeks, Long idIspitniRok);
 	
@@ -28,7 +28,7 @@ public interface IspitRepository extends CrudRepository<Ispit, Long> {
 	List<StudentIndeks> getNeprijavljeni(Long idIspita);
 	
 	
-	@Query("select i from Ispit i where i.drziPredmet.skolskaGodina.aktivna=1 and i.drziPredmet.nastavnik.id = :idNastavnik "
+	@Query("select i from Ispit i where i.drziPredmet.skolskaGodina.aktivna=true and i.drziPredmet.nastavnik.id = :idNastavnik "
 			+ "and i.drziPredmet.predmet.id = :idPredmet and i.ispitniRok.id = :idIspitniRok")
 	Ispit getIspitForNastavnikPredmetIspitniRokAktivna(Long idNastavnik, Long idPredmet, Long idIspitniRok);
 

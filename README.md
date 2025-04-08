@@ -102,9 +102,9 @@ docker-compose up --build
 Aplikacija je dostupna na:
 
 ```
-http://localhost:8080
+http://localhost:8090
 ```
 Mozes je testirati preko:
 
-http://localhost:8080/student/all
+http://localhost:8090/api/student/all
 
