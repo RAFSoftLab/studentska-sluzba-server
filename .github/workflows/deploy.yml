@@ -17,13 +17,17 @@ jobs:
     - name: Set environment variable for version folder
       run: echo "RELEASE_FOLDER=studsluzba_${{ github.run_number }}" >> $GITHUB_ENV
 
+    - name: Build with Maven
+      run: mvn clean package
+      working-directory: studsluzba_server
+
     - name: Copy project to VM
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.GCP_VM_HOST }}
         username: ${{ secrets.GCP_VM_USER }}
         key: ${{ secrets.GCP_SSH_KEY }}
-        source: "studsluzba"
+        source: "studsluzba_server"
         target: "~/deployments/${{ env.RELEASE_FOLDER }}"
 
     - name: Deploy via Docker Compose on VM
@@ -34,14 +38,6 @@ jobs:
         key: ${{ secrets.GCP_SSH_KEY }}
         script: |
           cd ~/deployments/${{ env.RELEASE_FOLDER }}
-          
-          echo "Stopping previous containers (if running)..."
           docker-compose down || true
-          
-          echo "Starting new version from $RELEASE_FOLDER..."
           docker-compose up --build -d
-          
-          echo "Linking this version as 'latest'..."
           ln -sfn ~/deployments/${{ env.RELEASE_FOLDER }} ~/deployments/latest
-
-          echo "Deployment finished: $RELEASE_FOLDER"
