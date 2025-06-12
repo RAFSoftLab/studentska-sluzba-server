@@ -38,8 +38,9 @@ public class SifarniciController {
 	    SrednjaSkola sp = srednjeSkoleRepository.save(srednjaSkola);   	   	    
 	    return sp.getId();
 	}
-	
-	
-	 	
 
+	@GetMapping(path="/test-gcp")
+	public String getTEstGCP() {
+		return "OVO JE TEST";
+	}
 }
