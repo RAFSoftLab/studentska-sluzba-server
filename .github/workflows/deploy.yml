@@ -14,32 +14,34 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'adopt'
+    - name: Set environment variable for version folder
+      run: echo "RELEASE_FOLDER=studsluzba_${{ github.run_number }}" >> $GITHUB_ENV
 
-    - name: Build with Maven
-      run: mvn clean package
-      working-directory: studsluzba
-
-    - name: Copy files to VM
+    - name: Copy project to VM
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.GCP_VM_HOST }}
         username: ${{ secrets.GCP_VM_USER }}
         key: ${{ secrets.GCP_SSH_KEY }}
-        source: "studsluzba/target/studsluzba_server-0.0.1-SNAPSHOT.jar"
-        target: "~/studsluzba/target"
+        source: "studsluzba"
+        target: "~/deployments/${{ env.RELEASE_FOLDER }}"
 
-    - name: Restart application on VM
+    - name: Deploy via Docker Compose on VM
       uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.GCP_VM_HOST }}
         username: ${{ secrets.GCP_VM_USER }}
         key: ${{ secrets.GCP_SSH_KEY }}
         script: |
-          cd ~/studsluzba
-          docker-compose down
+          cd ~/deployments/${{ env.RELEASE_FOLDER }}
+          
+          echo "Stopping previous containers (if running)..."
+          docker-compose down || true
+          
+          echo "Starting new version from $RELEASE_FOLDER..."
           docker-compose up --build -d
+          
+          echo "Linking this version as 'latest'..."
+          ln -sfn ~/deployments/${{ env.RELEASE_FOLDER }} ~/deployments/latest
+
+          echo "Deployment finished: $RELEASE_FOLDER"
