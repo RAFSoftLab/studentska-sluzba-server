@@ -39,8 +39,8 @@ public class SifarniciController {
 	    return sp.getId();
 	}
 
-	@GetMapping(path="/test-gcp")
-	public String getTEstGCP() {
-		return "OVO JE TEST";
+	@GetMapping(path="/test-github-actions")
+	public String getTestGCP() {
+		return "OVO JE (NE)USPESAN TEST???";
 	}
 }
