@@ -41,6 +41,6 @@ public class SifarniciController {
 
 	@GetMapping(path="/test-github-actions")
 	public String getTestGCP() {
-		return "OVO JE (NE)USPESAN TEST!?";
+		return "OVO JE (NE)USPESAN TEST!?!";
 	}
 }
