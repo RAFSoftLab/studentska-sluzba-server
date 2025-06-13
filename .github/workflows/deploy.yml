@@ -51,7 +51,7 @@ jobs:
         username: ${{ secrets.GCP_VM_USER }}
         key: ${{ secrets.GCP_SSH_KEY }}
         script: |
-          cd ~/deployments/${{ env.RELEASE_FOLDER }}
+          ln -sfn ~/deployments/${{ env.RELEASE_FOLDER }} ~/deployments/latest
+          cd ~/deployments/latest/studsluzba_server
           docker-compose down || true
           docker-compose up --build -d
-          ln -sfn ~/deployments/${{ env.RELEASE_FOLDER }} ~/deployments/latest
